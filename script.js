@@ -8,7 +8,7 @@ const map = new mapboxgl.Map({
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
     zoom: 11, // starting zoom level.
 });
-duiwuikdwyd
+
 
 map.on('load', () => {
   
