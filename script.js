@@ -11,6 +11,8 @@ const map = new mapboxgl.Map({
 duiwuikdwyd
 
 map.on('load', () => {
+  
+
     map.addSource('signature_sites', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Toronto%20Signature%20Sites%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
