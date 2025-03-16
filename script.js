@@ -43,11 +43,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-signature-sites-points', 
-        'type': 'circle', 
+        'type': 'symbol', 
         'source': 'signature_sites',
         'paint': {
-            'circle-color': '#ff1a1a',
-            'circle-radius': 2 
+            'icon-image': 'attraction',
+            'icon-size': 1 
         },
     });
 
@@ -58,11 +58,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-police-facilities-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'police_facilities',
         'paint': {
-            'circle-color': '#105694',
-            'circle-radius': 2 
+            'icon-image': 'police',
+            'icon-size': 1 
         },
     });
 
@@ -73,11 +73,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-community-housing-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'community_housing',
         'paint': {
-            'circle-color': '#edc707',
-            'circle-radius': 2 
+            'icon-image': 'lodging',
+            'icon-size': 1 
         },
     });
 
@@ -92,7 +92,7 @@ map.on('load', () => {
         'source': 'subway_line',
         'paint': {
             'line-color': '#00923f',
-            'line-width': 2,
+            'line-width': 1,
         },
     });
 
@@ -106,7 +106,7 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'subway_stations',
         'paint': {
-            'circle-color': '#000000',
+            'circle-color': '#cf7878',
             'circle-radius': 2 
         },
     });
@@ -118,12 +118,14 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-health-services-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'health_services',
         'paint': {
-            'circle-color': '#ed7e07',
-            'circle-radius': 2 
+            'icon-image': 'hospital',
+            'icon-size': 1  
         },
     });
     // 
 })
+
+
