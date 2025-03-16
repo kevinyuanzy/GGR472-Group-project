@@ -57,5 +57,49 @@ map.on('load', () => {
         },
     });
 
+    map.addSource('subway_line', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayRoutes.geojson' // The URL to GeoJson incompleted portion of subway line.
+    });
 
+    map.addLayer({
+        'id': 'toronto-subway-line', 
+        'type': 'line', 
+        'source': 'subway_line',
+        'paint': {
+            'line-color': '#00923f',
+            'line-width': 2,
+        },
+    });
+
+    map.addSource('subway_stations', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayStationsRidership.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-subway-stations-points',
+        'type': 'circle',
+        'source': 'subway_stations',
+        'paint': {
+            'circle-color': '#000000',
+            'circle-radius': 2 
+        },
+    });
+
+    map.addSource('health_services', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Health%20Services%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-health-services-points',
+        'type': 'circle',
+        'source': 'health_services',
+        'paint': {
+            'circle-color': '#ed7e07',
+            'circle-radius': 2 
+        },
+    });
+    // 
 })
