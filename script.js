@@ -10,6 +10,23 @@ const map = new mapboxgl.Map({
 });
 
 map.on('load', () => {
+    map.addSource('green_space', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/472-Lab2-KY/refs/heads/main/ParksAroundUofT.geojson' // The URL to my GeoJson polygon.
+    });
+    
+    // Add layer style to the map to represent park polygons.
+    map.addLayer({
+        'id': 'toronto-greenspace-polygons',
+        'type': 'fill',
+        'source': 'green_space',
+        'paint': {
+            'fill-color': '#00b33c', 
+            'fill-opacity': 0.5,
+            'fill-outline-color': 'black'
+        }
+    });
+
     map.addSource('signature_sites', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Toronto%20Signature%20Sites%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
