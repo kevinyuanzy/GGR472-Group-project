@@ -23,6 +23,15 @@ const geocoder = new MapboxGeocoder({
 });
 
 
+// Append geocoder variable to goeocoder HTML div to position on page
+document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+// Add event listener which returns map view to full screen on button click using flyTo method
+document.getElementById('returnbutton').addEventListener('click', () => {
+    map.flyTo({ center: [-79.39, 43.73], zoom: 10 });
+});
+
+
 
 map.on('load', () => {
   
