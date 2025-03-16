@@ -9,6 +9,20 @@ const map = new mapboxgl.Map({
     zoom: 11, // starting zoom level.
 });
 
+// add zoom control
+map.addControl(new mapboxgl.NavigationControl());
+
+// Add fullscreen option to the map
+map.addControl(new mapboxgl.FullscreenControl());
+
+
+const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    countries: "ca" //Canada only
+});
+
+
 
 map.on('load', () => {
   
