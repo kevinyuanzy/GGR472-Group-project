@@ -4,7 +4,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xO
 //Import the map style from MapBox. 
 const map = new mapboxgl.Map({
     container: 'map', // map container ID in the index.html file.
-    style: 'mapbox://styles/xieyiwe2/cm8c26hyq00a301s58yvi4c93', // style URL from created MapBox style.
+    style: 'mapbox://styles/xieyiwe2/cm8g96h1u00pb01s5g34z9fnx', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
     zoom: 11, // starting zoom level.
 });
@@ -102,11 +102,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-subway-stations-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'subway_stations',
-        'paint': {
-            'circle-color': '#cf7878',
-            'circle-radius': 2 
+        'layout': {
+            'icon-image': 'paris-transilien',
+            'icon-size': 1  
         },
     });
 
@@ -124,13 +124,14 @@ map.on('load', () => {
             'icon-size': 1  
         },
     });
+
     
     //Change map layer display based on check box using setLayoutProperty method
     document.getElementById('signaturecheck').addEventListener('change', (e) => {
         map.setLayoutProperty(
             'toronto-signature-sites-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+             e.target.checked ? 'visible' : 'none'
         );
     });
 
@@ -138,7 +139,7 @@ map.on('load', () => {
         map.setLayoutProperty(
             'toronto-police-facilities-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+             e.target.checked ? 'visible' : 'none'
         );
     });
     
@@ -146,7 +147,7 @@ map.on('load', () => {
         map.setLayoutProperty(
             'toronto-health-services-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+            e.target.checked ? 'visible' : 'none'
         );
     });
 
@@ -154,26 +155,25 @@ map.on('load', () => {
         map.setLayoutProperty(
             'toronto-affordable-housing-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+            e.target.checked ? 'visible' : 'none'
         );
     });
 
 });
- 
 
     // Pop-up windows that appear on a mouse click or hover
     // pop up, Bicycle Parking. When mouse click, can see the bicycle parking info. Changing cursor on mouse over.
-    map.on('mouseenter', 'subway-station', () => {
+    map.on('mouseenter', 'toronto-subway-stations-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
     
     // Changing cursor when mouse leave
-    map.on('mouseleave', 'subway-station', () => {
+    map.on('mouseleave', 'toronto-subway-stations-points', () => {
         map.getCanvas().style.cursor = '';
     });
     
     // Event listener for showing popup on click, here is points data bicycle parking
-    map.on('click', 'subway-station', (e) => {
+    map.on('click', 'toronto-subway-stations-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat) //Use method to set coordinates of popup based on mouse click location
             .setHTML(
@@ -185,22 +185,86 @@ map.on('load', () => {
     });
 
     // pop up, cycling network, mouse enter and mouse leave
-    map.on('mouseenter', 'cycling-network', () => {
+    map.on('mouseenter', 'toronto-affordable-housing-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
 
-    map.on('mouseleave', 'cycling-network', () => {
+    map.on('mouseleave', 'toronto-affordable-housing-points', () => {
         map.getCanvas().style.cursor = '';
     });
     
     // Event listener for showing popup on click, here is line data cycling network
-    map.on('click', 'cycling-network', (e) => {
+    map.on('click', 'toronto-affordable-housing-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(
-                `<b>Street Name:</b> ${e.features[0].properties.STREET_NAME}<br>
-                 <b>From Street:</b> ${e.features[0].properties.FROM_STREET}<br>
-                 <b>To Street:</b> ${e.features[0].properties.TO_STREET}`
+                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
+                 <b>Area-Name:</b> ${e.features[0].properties.AREA_NAME}`
             )
             .addTo(map);
     });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'toronto-health-services-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'toronto-health-services-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'toronto-health-services-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Agency_Name:</b> ${e.features[0].properties.AGENCY_NAME}<br>
+                 <b>Address:</b> ${e.features[0].properties.ADDRESS_FULL}<br>
+                 <b>Hours:</b> ${e.features[0].properties.HOURS}<br>
+                 <b>Website:</b> ${e.features[0].properties.WEBSITE}`
+            )
+            .addTo(map);
+    });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'toronto-signature-sites-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'toronto-signature-sites-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'toronto-signature-sites-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Name:</b> ${e.features[0].properties.AREA_NAME}<br>`
+            )
+            .addTo(map);
+    });
+
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'toronto-police-facilities-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'toronto-police-facilities-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'toronto-police-facilities-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
+                 <b>Facility:</b> ${e.features[0].properties.FACILITY}<br>`
+            )
+            .addTo(map);
+    });
+
+ 
+
