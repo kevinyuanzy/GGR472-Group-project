@@ -1,101 +1,267 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GGR472 Group Project</title>
+// Add the default map token from the Mapbox account
+mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xODk5dGxydiJ9._U9znMhQu-2lUtT3MidkQg'; 
 
-    <!-- mapbox API -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css' rel='stylesheet' />
-    <!-- mapbox geocoder plugin -->
-    <script
-        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
-        type="text/css">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
+//Import the map style from MapBox. 
+const map = new mapboxgl.Map({
+    container: 'map', // map container ID in the index.html file.
+    style: 'mapbox://styles/xieyiwe2/cm8g96h1u00pb01s5g34z9fnx', // style URL from created MapBox style.
+    center: [-79.391820, 43.701268], // starting position [lng, lat]. 
+    zoom: 11, // starting zoom level.
+});
+
+// add zoom control
+map.addControl(new mapboxgl.NavigationControl());
+
+// Add fullscreen option to the map
+map.addControl(new mapboxgl.FullscreenControl());
+
+
+const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    countries: "ca" //Canada only
+});
+
+
+// Append geocoder variable to goeocoder HTML div to position on page
+document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+// Add event listener which returns map view to full screen on button click using flyTo method
+document.getElementById('returnbutton').addEventListener('click', () => {
+    map.flyTo({ center: [-79.39, 43.73], zoom: 10 });
+});
+
+
+
+map.on('load', () => {
+  
+    map.addSource('signature_sites', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Toronto%20Signature%20Sites%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-signature-sites-points', 
+        'type': 'symbol', 
+        'source': 'signature_sites',
+        'layout': {
+            'icon-image': 'attraction',
+            'icon-size': 1 
+        },
+    });
+
+    map.addSource('police_facilities', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Police_Facilities_-8924748313065318893.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-police-facilities-points',
+        'type': 'symbol',
+        'source': 'police_facilities',
+        'layout': {
+            'icon-image': 'police',
+            'icon-size': 1 
+        },
+    });
+
+    map.addSource('affordable_housing', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/affordablehousing.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-affordable-housing-points',
+        'type': 'symbol',
+        'source': 'affordable_housing',
+        'paint': {
+            'circle-size': 1,
+            'circle-color': '#260E5D',
+        },
+    });
+
+    map.addSource('subway_line', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayRoutes.geojson' // The URL to GeoJson incompleted portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-subway-line', 
+        'type': 'line', 
+        'source': 'subway_line',
+        'paint': {
+            'line-color': '#00923f',
+            'line-width': 1,
+        },
+    });
+
+    map.addSource('subway_stations', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayStationsRidership.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-subway-stations-points',
+        'type': 'symbol',
+        'source': 'subway_stations',
+        'layout': {
+            'icon-image': 'paris-transilien',
+            'icon-size': 1  
+        },
+    });
+
+    map.addSource('health_services', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Health%20Services%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-health-services-points',
+        'type': 'symbol',
+        'source': 'health_services',
+        'layout': {
+            'icon-image': 'hospital',
+            'icon-size': 1  
+        },
+    });
+
     
+    //Change map layer display based on check box using setLayoutProperty method
+    document.getElementById('signaturecheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-signature-sites-points',
+            'visibility',
+             e.target.checked ? 'visible' : 'none'
+        );
+    });
+
+    document.getElementById('policecheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-police-facilities-points',
+            'visibility',
+             e.target.checked ? 'visible' : 'none'
+        );
+    });
     
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">T.O.Life Map - Toronto Living Guide</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://torontolife.com/category/culture/" target="_blank">Toronto Life</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    document.getElementById('healthcheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-health-services-points',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+    });
 
-     <!-- MAP CONTAINER -->
-     <div id='map' class='map-container'></div>
+    document.getElementById('housingcheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-affordable-housing-points',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+    });
 
-     <!-- NAVIGATION ELEMENTS -->
-     <div class='map-search-container'>
-         <label>Search for GTA location</label>
-         <div id="geocoder" class="geocoder"></div>
-         <button type="button" class="btn btn-primary btn-sm" id="returnbutton">Return to full extent</button>
-     </div>
-     
-     <!-- legend -->
-     <div id="legend" class="legend-box">
-        <h4>Bicycle Parking Capacity</h4>
-     </div>
+});
 
-     <!-- interactivity -->
-     <div class='map-data-container'>
-        <label>Filter Map View</label>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="signaturecheck" checked>
-            <label class="form-check-label">Show Signature Sites</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="policecheck" checked>
-            <label class="form-check-label">Show Police Stations</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="healthcheck" checked>
-            <label class="form-check-label">Show Health Service Sites</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="housingcheck" checked>
-            <label class="form-check-label">Show Affordable Housing Sites</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="subwaycheck" checked>
-            <label class="form-check-label">Show Subway Lines and Stations</label>
-        </div>    
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="legendcheck" checked>
-            <label class="form-check-label">Show Legend</label>
-        </div>
+    // Pop-up windows that appear on a mouse click or hover
+    // pop up, Bicycle Parking. When mouse click, can see the bicycle parking info. Changing cursor on mouse over.
+    map.on('mouseenter', 'toronto-subway-stations-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    
+    // Changing cursor when mouse leave
+    map.on('mouseleave', 'toronto-subway-stations-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is points data bicycle parking
+    map.on('click', 'toronto-subway-stations-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat) //Use method to set coordinates of popup based on mouse click location
+            .setHTML(
+                `<b>Station Name:</b> ${e.features[0].properties.Station_Name}<br>
+                 <b>Line:</b> ${e.features[0].properties.Line}<br>
+                 <b>Wheelchair Friendly:</b> ${e.features[0].properties.Wheelchair_Access}`
+            )
+            .addTo(map); //Show popup on map
+    });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'toronto-affordable-housing-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'toronto-affordable-housing-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'toronto-affordable-housing-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
+                 <b>Area-Name:</b> ${e.features[0].properties.AREA_NAME}`
+            )
+            .addTo(map);
+    });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'toronto-health-services-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'toronto-health-services-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'toronto-health-services-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Agency_Name:</b> ${e.features[0].properties.AGENCY_NAME}<br>
+                 <b>Address:</b> ${e.features[0].properties.ADDRESS_FULL}<br>
+                 <b>Hours:</b> ${e.features[0].properties.HOURS}<br>
+                 <b>Website:</b> ${e.features[0].properties.WEBSITE}`
+            )
+            .addTo(map);
+    });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'toronto-signature-sites-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'toronto-signature-sites-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'toronto-signature-sites-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Name:</b> ${e.features[0].properties.AREA_NAME}<br>`
+            )
+            .addTo(map);
+    });
 
 
-     <!-- Bootstrap JS -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'toronto-police-facilities-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
 
-     <!-- Custom JavaScript -->
-     <script src="script.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+    map.on('mouseleave', 'toronto-police-facilities-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'toronto-police-facilities-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
+                 <b>Facility:</b> ${e.features[0].properties.FACILITY}<br>`
+            )
+            .addTo(map);
+    });
