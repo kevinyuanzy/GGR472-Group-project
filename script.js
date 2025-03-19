@@ -125,3 +125,47 @@ map.on('load', () => {
         },
     });
 });
+
+    // Pop-up windows that appear on a mouse click or hover
+    // pop up, Bicycle Parking. When mouse click, can see the bicycle parking info. Changing cursor on mouse over.
+    map.on('mouseenter', 'subway-station', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    
+    // Changing cursor when mouse leave
+    map.on('mouseleave', 'subway-station', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is points data bicycle parking
+    map.on('click', 'subway-station', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat) //Use method to set coordinates of popup based on mouse click location
+            .setHTML(
+                `<b>Station Name:</b> ${e.features[0].properties.Station_Name}<br>
+                 <b>Line:</b> ${e.features[0].properties.Line}<br>
+                 <b>Wheelchair Friendly:</b> ${e.features[0].properties.Wheelchair_Access}`
+            )
+            .addTo(map); //Show popup on map
+    });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'cycling-network', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'cycling-network', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'cycling-network', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Street Name:</b> ${e.features[0].properties.STREET_NAME}<br>
+                 <b>From Street:</b> ${e.features[0].properties.FROM_STREET}<br>
+                 <b>To Street:</b> ${e.features[0].properties.TO_STREET}`
+            )
+            .addTo(map);
+    });
