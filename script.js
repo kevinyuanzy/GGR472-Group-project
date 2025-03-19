@@ -3,7 +3,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xO
 
 //Import the map style from MapBox. 
 const map = new mapboxgl.Map({
-    container: 'Lab2Map', // map container ID in the index.html file.
+    container: 'map', // map container ID in the index.html file.
     style: 'mapbox://styles/xieyiwe2/cm8c26hyq00a301s58yvi4c93', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
     zoom: 11, // starting zoom level.
@@ -45,7 +45,7 @@ map.on('load', () => {
         'id': 'toronto-signature-sites-points', 
         'type': 'symbol', 
         'source': 'signature_sites',
-        'paint': {
+        'layout': {
             'icon-image': 'attraction',
             'icon-size': 1 
         },
@@ -60,7 +60,7 @@ map.on('load', () => {
         'id': 'toronto-police-facilities-points',
         'type': 'symbol',
         'source': 'police_facilities',
-        'paint': {
+        'layout': {
             'icon-image': 'police',
             'icon-size': 1 
         },
@@ -75,7 +75,7 @@ map.on('load', () => {
         'id': 'toronto-community-housing-points',
         'type': 'symbol',
         'source': 'community_housing',
-        'paint': {
+        'layout': {
             'icon-image': 'lodging',
             'icon-size': 1 
         },
@@ -120,7 +120,7 @@ map.on('load', () => {
         'id': 'toronto-health-services-points',
         'type': 'symbol',
         'source': 'health_services',
-        'paint': {
+        'layout': {
             'icon-image': 'hospital',
             'icon-size': 1  
         },
