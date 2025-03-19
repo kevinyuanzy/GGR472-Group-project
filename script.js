@@ -4,7 +4,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xO
 //Import the map style from MapBox. 
 const map = new mapboxgl.Map({
     container: 'map', // map container ID in the index.html file.
-    style: 'mapbox://styles/xieyiwe2/cm8c26hyq00a301s58yvi4c93', // style URL from created MapBox style.
+    style: 'mapbox://styles/xieyiwe2/cm8g96h1u00pb01s5g34z9fnx', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
     zoom: 11, // starting zoom level.
 });
@@ -230,3 +230,15 @@ map.on('load', () => {
             )
             .addTo(map);
     });
+
+    //Access the Id of checkbox and add an event listener which changes the visibility of the layer
+    document.getElementById('hospitals-id').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'hospitals1',
+            'visibility',
+            //make the layer visible when the checkbox is checked, and not visible when it isn't
+            e.target.checked ? "visible" : "none",
+            e.target.checked ? 'none' : 'visible'
+        );
+    });
+
