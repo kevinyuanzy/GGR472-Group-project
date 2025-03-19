@@ -125,18 +125,13 @@ map.on('load', () => {
         },
     });
 
-
-    
-
-
-    
     
     //Change map layer display based on check box using setLayoutProperty method
     document.getElementById('signaturecheck').addEventListener('change', (e) => {
         map.setLayoutProperty(
             'toronto-signature-sites-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+             e.target.checked ? 'visible' : 'none'
         );
     });
 
@@ -144,7 +139,7 @@ map.on('load', () => {
         map.setLayoutProperty(
             'toronto-police-facilities-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+             e.target.checked ? 'visible' : 'none'
         );
     });
     
@@ -152,7 +147,7 @@ map.on('load', () => {
         map.setLayoutProperty(
             'toronto-health-services-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+            e.target.checked ? 'visible' : 'none'
         );
     });
 
@@ -160,7 +155,7 @@ map.on('load', () => {
         map.setLayoutProperty(
             'toronto-affordable-housing-points',
             'visibility',
-        e.target.checked ? 'visible' : 'none'
+            e.target.checked ? 'visible' : 'none'
         );
     });
 
