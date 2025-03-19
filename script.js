@@ -41,15 +41,15 @@ map.on('load', () => {
         },
     });
 
-    map.addSource('community_housing', {
+    map.addSource('affordable_housing', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Community%20Housing%20Data%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/affordablehousing.geojson' // The URL to GeoJson completed portion of subway line.
     });
 
     map.addLayer({
-        'id': 'toronto-community-housing-points',
+        'id': 'toronto-affordable-housing-points',
         'type': 'circle',
-        'source': 'community_housing',
+        'source': 'affordable_housing',
         'paint': {
             'circle-color': '#edc707',
             'circle-radius': 2 
