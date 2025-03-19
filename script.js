@@ -1,13 +1,37 @@
 // Add the default map token from the Mapbox account
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW55dWFuenkiLCJhIjoiY201eHprYXU0MGZwejJsb242Y3Nza25oYyJ9.h05hqdnqlx2BwgwbQNuKCg'; 
+mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xODk5dGxydiJ9._U9znMhQu-2lUtT3MidkQg'; 
 
 //Import the map style from MapBox. 
 const map = new mapboxgl.Map({
-    container: 'Lab2Map', // map container ID in the index.html file.
-    style: 'mapbox://styles/kevinyuanzy/cm6ztbpqc003s01qwcvdrf6ft', // style URL from created MapBox style.
+    container: 'map', // map container ID in the index.html file.
+    style: 'mapbox://styles/xieyiwe2/cm8c26hyq00a301s58yvi4c93', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
     zoom: 11, // starting zoom level.
 });
+
+// add zoom control
+map.addControl(new mapboxgl.NavigationControl());
+
+// Add fullscreen option to the map
+map.addControl(new mapboxgl.FullscreenControl());
+
+
+const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    countries: "ca" //Canada only
+});
+
+
+// Append geocoder variable to goeocoder HTML div to position on page
+document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+// Add event listener which returns map view to full screen on button click using flyTo method
+document.getElementById('returnbutton').addEventListener('click', () => {
+    map.flyTo({ center: [-79.39, 43.73], zoom: 10 });
+});
+
+
 
 map.on('load', () => {
   
@@ -18,11 +42,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-signature-sites-points', 
-        'type': 'circle', 
+        'type': 'symbol', 
         'source': 'signature_sites',
-        'paint': {
-            'circle-color': '#ff1a1a',
-            'circle-radius': 2 
+        'layout': {
+            'icon-image': 'attraction',
+            'icon-size': 1 
         },
     });
 
@@ -33,11 +57,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-police-facilities-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'police_facilities',
-        'paint': {
-            'circle-color': '#105694',
-            'circle-radius': 2 
+        'layout': {
+            'icon-image': 'police',
+            'icon-size': 1 
         },
     });
 
@@ -48,11 +72,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-community-housing-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'community_housing',
-        'paint': {
-            'circle-color': '#edc707',
-            'circle-radius': 2 
+        'layout': {
+            'icon-image': 'lodging',
+            'icon-size': 1 
         },
     });
 
@@ -67,7 +91,7 @@ map.on('load', () => {
         'source': 'subway_line',
         'paint': {
             'line-color': '#00923f',
-            'line-width': 2,
+            'line-width': 1,
         },
     });
 
@@ -81,7 +105,7 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'subway_stations',
         'paint': {
-            'circle-color': '#000000',
+            'circle-color': '#cf7878',
             'circle-radius': 2 
         },
     });
@@ -93,12 +117,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-health-services-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'health_services',
-        'paint': {
-            'circle-color': '#ed7e07',
-            'circle-radius': 2 
+        'layout': {
+            'icon-image': 'hospital',
+            'icon-size': 1  
         },
     });
-
-})
+});
