@@ -5,3 +5,59 @@
     bottom: 0;
     width: 100%;
 }
+
+/* 搜索框样式 */
+.map-search-container {
+    position: absolute;
+    top: 70px; /* 让它不被 navbar 遮挡 */
+    left: 10px;
+    z-index: 11;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Data container: searchbox */
+.map-data-container {
+    position: absolute;
+    top: 200px;
+    left: 10px;
+    z-index: 11;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.option-label {
+    font: 15px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-weight: bold;
+    width: 95%;
+    padding-bottom: 8px;
+}
+
+.form-check-label {
+    font: 14px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+form {
+    padding-bottom: 20px;
+}
+
+/* 过滤选项复选框的样式 */
+.form-check {
+    margin-top: 5px;
+}
+
+/* 图例样式 */
+.legend-box {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    z-index: 11;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
