@@ -74,9 +74,9 @@ map.on('load', () => {
         'id': 'toronto-affordable-housing-points',
         'type': 'symbol',
         'source': 'affordable_housing',
-        'layout': {
-            'icon-image': 'lodging',
-            'icon-size': 1 
+        'paint': {
+            'circle-size': 1,
+            'circle-color': '#260E5D',
         },
     });
 
@@ -124,10 +124,6 @@ map.on('load', () => {
             'icon-size': 1  
         },
     });
-
-
-    
-
 
     
     
