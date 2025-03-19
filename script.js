@@ -102,11 +102,11 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-subway-stations-points',
-        'type': 'circle',
+        'type': 'symbol',
         'source': 'subway_stations',
-        'paint': {
-            'circle-color': '#cf7878',
-            'circle-radius': 2 
+        'layout': {
+            'icon-image': 'paris-transilien',
+            'icon-size': 1  
         },
     });
 
