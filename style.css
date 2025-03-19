@@ -34,16 +34,31 @@ html, body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* 交互工具栏 */
+/* Data container: searchbox */
 .map-data-container {
     position: absolute;
-    top: 150px;
+    top: 200px;
     left: 10px;
     z-index: 11;
     background: white;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.option-label {
+    font: 15px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-weight: bold;
+    width: 95%;
+    padding-bottom: 8px;
+}
+
+.form-check-label {
+    font: 14px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+form {
+    padding-bottom: 20px;
 }
 
 /* 过滤选项复选框的样式 */
@@ -60,5 +75,6 @@ html, body {
     background: white;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
 }
+
