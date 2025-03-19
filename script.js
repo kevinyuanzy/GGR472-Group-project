@@ -71,9 +71,9 @@ map.on('load', () => {
     });
 
     map.addLayer({
-        'id': 'toronto-community-housing-points',
+        'id': 'toronto-affordable-housing-points',
         'type': 'symbol',
-        'source': 'community_housing',
+        'source': 'affordable_housing',
         'layout': {
             'icon-image': 'lodging',
             'icon-size': 1 
@@ -124,7 +124,42 @@ map.on('load', () => {
             'icon-size': 1  
         },
     });
+    
+    //Change map layer display based on check box using setLayoutProperty method
+    document.getElementById('signaturecheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-signature-sites-points',
+            'visibility',
+        e.target.checked ? 'visible' : 'none'
+        );
+    });
+
+    document.getElementById('policecheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-police-facilities-points',
+            'visibility',
+        e.target.checked ? 'visible' : 'none'
+        );
+    });
+    
+    document.getElementById('healthcheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-health-services-points',
+            'visibility',
+        e.target.checked ? 'visible' : 'none'
+        );
+    });
+
+    document.getElementById('housingcheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-affordable-housing-points',
+            'visibility',
+        e.target.checked ? 'visible' : 'none'
+        );
+    });
+
 });
+ 
 
     // Pop-up windows that appear on a mouse click or hover
     // pop up, Bicycle Parking. When mouse click, can see the bicycle parking info. Changing cursor on mouse over.
