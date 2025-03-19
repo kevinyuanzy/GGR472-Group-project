@@ -4,7 +4,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xO
 //Import the map style from MapBox. 
 const map = new mapboxgl.Map({
     container: 'map', // map container ID in the index.html file.
-    style: 'mapbox://styles/xieyiwe2/cm8gbnrx400pp01s557t645xq', // style URL from created MapBox style.
+    style: 'mapbox://styles/xieyiwe2/cm8g96h1u00pb01s5g34z9fnx', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
     zoom: 11, // starting zoom level.
 });
