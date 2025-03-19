@@ -150,22 +150,83 @@ map.on('load', () => {
     });
 
     // pop up, cycling network, mouse enter and mouse leave
-    map.on('mouseenter', 'cycling-network', () => {
+    map.on('mouseenter', 'affordable-housing', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
 
-    map.on('mouseleave', 'cycling-network', () => {
+    map.on('mouseleave', 'affordable-housing', () => {
         map.getCanvas().style.cursor = '';
     });
     
     // Event listener for showing popup on click, here is line data cycling network
-    map.on('click', 'cycling-network', (e) => {
+    map.on('click', 'affordable-housing', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(
-                `<b>Street Name:</b> ${e.features[0].properties.STREET_NAME}<br>
-                 <b>From Street:</b> ${e.features[0].properties.FROM_STREET}<br>
-                 <b>To Street:</b> ${e.features[0].properties.TO_STREET}`
+                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
+                 <b>Area-Name:</b> ${e.features[0].properties.AREA_NAME}`
+            )
+            .addTo(map);
+    });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'health-services', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'health-services', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'health-services', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Agency_Name:</b> ${e.features[0].properties.AGENCY_NAME}<br>
+                 <b>Address:</b> ${e.features[0].properties.ADDRESS_FULL}<br>
+                 <b>Hours:</b> ${e.features[0].properties.HOURS}<br>
+                 <b>Website:</b> ${e.features[0].properties.WEBSITE}`
+            )
+            .addTo(map);
+    });
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'signature', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'signature', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'signature', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Name:</b> ${e.features[0].properties.AREA_NAME}<br>`
+            )
+            .addTo(map);
+    });
+
+
+    // pop up, cycling network, mouse enter and mouse leave
+    map.on('mouseenter', 'police-facility', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'police-facility', () => {
+        map.getCanvas().style.cursor = '';
+    });
+    
+    // Event listener for showing popup on click, here is line data cycling network
+    map.on('click', 'police-facility', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
+                 <b>Facility:</b> ${e.features[0].properties.FACILITY}<br>`
             )
             .addTo(map);
     });
