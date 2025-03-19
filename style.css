@@ -1,7 +1,64 @@
-/**Set up map container*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 让 navbar 永远显示在地图之上 */
+.navbar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+/* 让地图填充剩余页面，但不会覆盖 navbar */
 .map-container {
     position: absolute;
-    top: 0;
+    top: 56px; /* 适配 Bootstrap 默认 navbar 高度 */
+    left: 0;
+    right: 0;
     bottom: 0;
-    width: 100%;
+}
+
+/* 搜索框样式 */
+.map-search-container {
+    position: absolute;
+    top: 70px; /* 让它不被 navbar 遮挡 */
+    left: 10px;
+    z-index: 11;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 交互工具栏 */
+.map-data-container {
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    z-index: 11;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 过滤选项复选框的样式 */
+.form-check {
+    margin-top: 5px;
+}
+
+/* 图例样式 */
+.legend-box {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    z-index: 11;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
