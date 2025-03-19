@@ -1,0 +1,356 @@
+{
+    "currentVersion": 10.61,
+    "id": 11,
+    "name": "TTC Subway Route",
+    "parentLayerId": -1,
+    "defaultVisibility": false,
+    "minScale": 175000,
+    "maxScale": 0,
+    "type": "Feature Layer",
+    "geometryType": "esriGeometryPolyline",
+    "description": "",
+    "copyrightText": "",
+    "editFieldsInfo": null,
+    "ownershipBasedAccessControlForFeatures": null,
+    "syncCanReturnChanges": false,
+    "relationships": [],
+    "isDataVersioned": false,
+    "supportsRollbackOnFailureParameter": true,
+    "archivingInfo": {
+     "supportsQueryWithHistoricMoment": false,
+     "startArchivingMoment": -1
+    },
+    "supportsStatistics": true,
+    "supportsAdvancedQueries": true,
+    "supportsValidateSQL": true,
+    "supportsCoordinatesQuantization": true,
+    "supportsCalculate": true,
+    "advancedQueryCapabilities": {
+     "supportsPagination": true,
+     "supportsTrueCurve": true,
+     "supportsQueryWithDistance": true,
+     "supportsReturningQueryExtent": true,
+     "supportsStatistics": true,
+     "supportsHavingClause": true,
+     "supportsCountDistinct": true,
+     "supportsOrderBy": true,
+     "supportsDistinct": true,
+     "supportsQueryWithResultType": true,
+     "supportsReturningGeometryCentroid": false,
+     "supportsSqlExpression": true
+    },
+    "extent": {
+     "xmin": -8869016.141327048,
+     "ymin": 5396862.793091753,
+     "xmax": -8803909.289901273,
+     "ymax": 5446886.487738192,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "drawingInfo": {
+     "renderer": {
+      "type": "uniqueValue",
+      "field1": "ROUTE_COLOR",
+      "field2": null,
+      "field3": null,
+      "defaultSymbol": null,
+      "defaultLabel": null,
+      "uniqueValueInfos": [
+       {
+        "symbol": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          213,
+          200,
+          43,
+          255
+         ],
+         "width": 6
+        },
+        "value": "D5C82B",
+        "label": "D5C82B",
+        "description": ""
+       },
+       {
+        "symbol": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          0,
+          128,
+          0,
+          255
+         ],
+         "width": 6
+        },
+        "value": "008000",
+        "label": "008000",
+        "description": ""
+       },
+       {
+        "symbol": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          16,
+          139,
+          239,
+          255
+         ],
+         "width": 6
+        },
+        "value": "108BEF",
+        "label": "108BEF",
+        "description": ""
+       },
+       {
+        "symbol": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          179,
+          0,
+          179,
+          255
+         ],
+         "width": 6
+        },
+        "value": "B300B3",
+        "label": "B300B3",
+        "description": ""
+       }
+      ],
+      "fieldDelimiter": ","
+     },
+     "transparency": 0,
+     "labelingInfo": null
+    },
+    "hasM": false,
+    "hasZ": false,
+    "allowGeometryUpdates": true,
+    "allowTrueCurvesUpdates": false,
+    "onlyAllowTrueCurveUpdatesByTrueCurveClients": true,
+    "hasAttachments": false,
+    "supportsApplyEditsWithGlobalIds": false,
+    "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+    "objectIdField": "OBJECTID",
+    "globalIdField": "",
+    "displayField": "ROUTE_SHORT_NAME",
+    "typeIdField": "ROUTE_COLOR",
+    "subtypeField": "",
+    "fields": [
+     {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null,
+      "editable": false,
+      "nullable": false
+     },
+     {
+      "name": "ROUTE_ID",
+      "type": "esriFieldTypeInteger",
+      "alias": "ROUTE_ID",
+      "domain": null,
+      "editable": true,
+      "nullable": true
+     },
+     {
+      "name": "AGENCY_ID",
+      "type": "esriFieldTypeInteger",
+      "alias": "AGENCY_ID",
+      "domain": null,
+      "editable": true,
+      "nullable": true
+     },
+     {
+      "name": "ROUTE_SHORT_NAME",
+      "type": "esriFieldTypeString",
+      "alias": "ROUTE_SHORT_NAME",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 10
+     },
+     {
+      "name": "ROUTE_LONG_NAME",
+      "type": "esriFieldTypeString",
+      "alias": "ROUTE_LONG_NAME",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 100
+     },
+     {
+      "name": "ROUTE_DESC",
+      "type": "esriFieldTypeString",
+      "alias": "ROUTE_DESC",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 1000
+     },
+     {
+      "name": "ROUTE_TYPE",
+      "type": "esriFieldTypeString",
+      "alias": "ROUTE_TYPE",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 2
+     },
+     {
+      "name": "ROUTE_URL",
+      "type": "esriFieldTypeString",
+      "alias": "ROUTE_URL",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 1000
+     },
+     {
+      "name": "ROUTE_COLOR",
+      "type": "esriFieldTypeString",
+      "alias": "ROUTE_COLOR",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 20
+     },
+     {
+      "name": "ROUTE_TEXT_COLOR",
+      "type": "esriFieldTypeString",
+      "alias": "ROUTE_TEXT_COLOR",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 20
+     }
+    ],
+    "geometryField": {
+     "name": "SHAPE",
+     "type": "esriFieldTypeGeometry",
+     "alias": "SHAPE",
+     "domain": null,
+     "editable": true,
+     "nullable": true,
+     "defaultValue": null,
+     "modelName": "SHAPE"
+    },
+    "dateFieldsTimeReference": {
+     "timeZone": "Eastern Standard Time",
+     "respectsDaylightSaving": true
+    },
+    "types": [
+     {
+      "id": "D5C82B",
+      "name": "D5C82B",
+      "domains": {},
+      "templates": [
+       {
+        "name": "D5C82B",
+        "description": "",
+        "prototype": {
+         "attributes": {
+          "ROUTE_COLOR": "D5C82B",
+          "ROUTE_TEXT_COLOR": null,
+          "ROUTE_ID": null,
+          "AGENCY_ID": null,
+          "ROUTE_SHORT_NAME": null,
+          "ROUTE_LONG_NAME": null,
+          "ROUTE_DESC": null,
+          "ROUTE_TYPE": null,
+          "ROUTE_URL": null
+         }
+        },
+        "drawingTool": "esriFeatureEditToolLine"
+       }
+      ]
+     },
+     {
+      "id": "008000",
+      "name": "008000",
+      "domains": {},
+      "templates": [
+       {
+        "name": "008000",
+        "description": "",
+        "prototype": {
+         "attributes": {
+          "ROUTE_COLOR": "008000",
+          "ROUTE_TEXT_COLOR": null,
+          "ROUTE_ID": null,
+          "AGENCY_ID": null,
+          "ROUTE_SHORT_NAME": null,
+          "ROUTE_LONG_NAME": null,
+          "ROUTE_DESC": null,
+          "ROUTE_TYPE": null,
+          "ROUTE_URL": null
+         }
+        },
+        "drawingTool": "esriFeatureEditToolLine"
+       }
+      ]
+     },
+     {
+      "id": "108BEF",
+      "name": "108BEF",
+      "domains": {},
+      "templates": [
+       {
+        "name": "108BEF",
+        "description": "",
+        "prototype": {
+         "attributes": {
+          "ROUTE_COLOR": "108BEF",
+          "ROUTE_TEXT_COLOR": null,
+          "ROUTE_ID": null,
+          "AGENCY_ID": null,
+          "ROUTE_SHORT_NAME": null,
+          "ROUTE_LONG_NAME": null,
+          "ROUTE_DESC": null,
+          "ROUTE_TYPE": null,
+          "ROUTE_URL": null
+         }
+        },
+        "drawingTool": "esriFeatureEditToolLine"
+       }
+      ]
+     },
+     {
+      "id": "B300B3",
+      "name": "B300B3",
+      "domains": {},
+      "templates": [
+       {
+        "name": "B300B3",
+        "description": "",
+        "prototype": {
+         "attributes": {
+          "ROUTE_COLOR": "B300B3",
+          "ROUTE_TEXT_COLOR": null,
+          "ROUTE_ID": null,
+          "AGENCY_ID": null,
+          "ROUTE_SHORT_NAME": null,
+          "ROUTE_LONG_NAME": null,
+          "ROUTE_DESC": null,
+          "ROUTE_TYPE": null,
+          "ROUTE_URL": null
+         }
+        },
+        "drawingTool": "esriFeatureEditToolLine"
+       }
+      ]
+     }
+    ],
+    "templates": [],
+    "maxRecordCount": 1000,
+    "supportedQueryFormats": "JSON, AMF, geoJSON",
+    "capabilities": "Query",
+    "standardMaxRecordCount": 8000,
+    "tileMaxRecordCount": 4000,
+    "maxRecordCountFactor": 1
+   }
