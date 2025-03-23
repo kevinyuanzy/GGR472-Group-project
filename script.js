@@ -9,6 +9,7 @@ const map = new mapboxgl.Map({
     zoom: 11, // starting zoom level.
 });
 
+<<<<<<< Updated upstream
 // add zoom control to the map
 // Add fullscreen option to the map
 
@@ -320,3 +321,7 @@ map.on('load', () => {
     });
 
     
+=======
+
+  
+>>>>>>> Stashed changes
