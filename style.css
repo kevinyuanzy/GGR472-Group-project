@@ -7,13 +7,6 @@ html, body {
 
 /* Navbar */
 .navbar {
-<<<<<<< HEAD
-  position: relative;
-  z-index: 1000;
-  width: 100%;
-  background-color: #fcabc9e2;
-  color: rgb(255, 172, 247);
-=======
     position: relative;
     z-index: 1000;
     width: 100%;
@@ -34,7 +27,6 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0;
->>>>>>> 29a619b4ce8e5d927c49cf1ad9abd49b40534c23
 }
 
 .navbar * {
@@ -176,16 +168,6 @@ html, body {
   font: 14px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 }
 
-<<<<<<< HEAD
-.option-label {
-  font: 15px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-  font-weight: bold;
-  width: 95%;
-  padding-bottom: 8px;
-}
-
-
-=======
 form {
     padding-bottom: 20px;
 }
@@ -279,4 +261,3 @@ form {
     object-fit: contain;
 
   }
->>>>>>> 29a619b4ce8e5d927c49cf1ad9abd49b40534c23
