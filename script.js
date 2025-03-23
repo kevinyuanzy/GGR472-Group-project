@@ -79,7 +79,7 @@ map.on('load', () => {
 
     map.addSource('subway_line', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayRoutes.geojson' // The URL to GeoJson incompleted portion of subway line.
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/ttcsubwayroute_updated.geojson' // The URL to GeoJson incompleted portion of subway line.
     });
 
     map.addLayer({
@@ -87,23 +87,32 @@ map.on('load', () => {
         'type': 'line', 
         'source': 'subway_line',
         'paint': {
-            'line-color': '#00923f',
-            'line-width': 1,
+            'line-color': [
+                'step', // STEP expression produces stepped results based on value pairs
+                ['get', 'Line'], // GET expression retrieves property value from 'population' data field
+                '#ffffff', // Colour assigned to any values < first step
+                1, '#F8C300', // Colours assigned to values >= each step
+                2, '#00923F',
+                4, '#A21A68'
+            ],
+            'line-width': 1.5,
         },
     });
 
     map.addSource('subway_stations', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayStationsRidership.geojson' // The URL to GeoJson completed portion of subway line.
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/ttcstations.geojson' // The URL to GeoJson completed portion of subway line.
     });
 
     map.addLayer({
         'id': 'toronto-subway-stations-points',
-        'type': 'symbol',
+        'type': 'circle',
         'source': 'subway_stations',
-        'layout': {
-            'icon-image': 'paris-transilien',
-            'icon-size': 1  
+        'paint': {
+            'circle-color': '#f5f5f5',
+            'circle-radius': 5,
+            'circle-stroke-color': '#000000',
+            'circle-stroke-width': 1
         },
     });
 
@@ -156,6 +165,18 @@ map.on('load', () => {
         );
     });
 
+    document.getElementById('subwaycheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-subway-stations-points',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+        map.setLayoutProperty(
+            'toronto-subway-line',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+    });
 });
 
     // Pop-up windows that appear on a mouse click or hover
@@ -271,8 +292,7 @@ map.on('load', () => {
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
             { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#260E5D' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
-            { id: 'toronto-subway-line', name: 'Subway Line', type: 'color', color: '#00923f' },
-            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'icon', icon: 'subway' },
+            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'color', color: '#f5f5f5'},
         ];
     
         layers.forEach(layer => {
@@ -283,7 +303,7 @@ map.on('load', () => {
             key.className = 'legend-color';
     
             if (layer.type === 'color') {
-                key.style.backgroundColor = layer.color;  // 显示颜色标识
+                key.style.backgroundColor = layer.color; // 显示颜色标识
             } else if (layer.type === 'icon') {
                 key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
             }
