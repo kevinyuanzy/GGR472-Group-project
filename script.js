@@ -71,9 +71,9 @@ map.on('load', () => {
         'id': 'toronto-affordable-housing-points',
         'type': 'circle',
         'source': 'affordable_housing',
-        'layout': {
-            'icon-image': 'lodging',
-            'icon-size': 1 
+        'paint': {
+            'circle-color': '#260E5D',
+            'circle-size': 1 
         },
     });
 
@@ -285,7 +285,7 @@ map.on('load', () => {
             if (layer.type === 'color') {
                 key.style.backgroundColor = layer.color;  // 显示颜色标识
             } else if (layer.type === 'icon') {
-                key.innerHTML = `< img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
+                key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
             }
     
             // 添加 layer 名称
@@ -298,6 +298,5 @@ map.on('load', () => {
             legend.appendChild(item);
         });
     });
-    
 
     
