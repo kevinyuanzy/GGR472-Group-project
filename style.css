@@ -21,14 +21,65 @@ html, body {
   }  
 
 
-/* 让地图填充剩余页面，但不会覆盖 navbar */
-.map-container {
-    position: absolute;
-    top: 56px; /* 适配 Bootstrap 默认 navbar 高度 */
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
+
+  .map-wrapper {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 56px); /* 减去 navbar 高度 */
+    padding: 20px 10px 20px 20px; /* 上右下左：地图左边、下边加点空白 */
+    box-sizing: border-box;
+  }
+  
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+  }
+  
+  /* 地圖樣式 */
+  .map {
+    width: 75%;
+    height: 700px;
+    border: 3px solid #aa5e79;
+  }
+  
+  /* 右邊側邊欄樣式 */
+  .sidebar {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* 讓 map-data-container 看起來像卡片 */
+  .map-data-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  /* legend-box */
+  .legend-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+
+
+  .right-placeholder {
+    flex: 1;
+    padding: 10px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+  }
+
+
+
 
 /* 搜索框样式 */
 .map-search-container {
