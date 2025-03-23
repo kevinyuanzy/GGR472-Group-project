@@ -1,5 +1,5 @@
 // Add the default map token from the Mapbox account
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW55dWFuenkiLCJhIjoiY201eHprYXU0MGZwejJsb242Y3Nza25oYyJ9.h05hqdnqlx2BwgwbQNuKCg'; 
+mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xODk5dGxydiJ9._U9znMhQu-2lUtT3MidkQg'; 
 
 //Import the map style from MapBox. 
 const map = new mapboxgl.Map({
@@ -46,7 +46,7 @@ map.on('load', () => {
         'source': 'signature_sites',
         'layout': {
             'icon-image': 'attraction',
-            'icon-size': 1 
+            'icon-size': 1, 
         },
     });
 
@@ -74,12 +74,12 @@ map.on('load', () => {
         'id': 'toronto-affordable-housing-points',
         'type': 'circle',
         'source': 'affordable_housing',
-        'paint': {
-            'circle-size': 4,
-            'circle-color': '#260E5D',
-            'circle-opacity': 0.75
+        'layout': {
+            'icon-image': 'lodging',
+            'icon-size': 1 
         },
     });
+
 
     map.addSource('subway_line', {
         type: 'geojson',
@@ -266,6 +266,42 @@ map.on('load', () => {
             )
             .addTo(map);
     });
-
  
 
+
+    map.on('load', () => {
+        const legend = document.getElementById('legend');
+    
+        const layers = [
+            { id: 'toronto-signature-sites-points', name: 'Signature Sites', type: 'icon', icon: 'attraction' },
+            { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
+            { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#260E5D' },
+            { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
+            { id: 'toronto-subway-line', name: 'Subway Line', type: 'color', color: '#00923f' },
+            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'icon', icon: 'subway' },
+        ];
+    
+        layers.forEach(layer => {
+            const item = document.createElement('div');
+            item.className = 'legend-item';
+    
+            const key = document.createElement('span');
+            key.className = 'legend-color';
+    
+            if (layer.type === 'color') {
+                key.style.backgroundColor = layer.color;  // 显示颜色标识
+            } else if (layer.type === 'icon') {
+                key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
+            }
+    
+            // 添加 layer 名称
+            const label = document.createElement('span');
+            label.textContent = layer.name;
+    
+            // 组合 legend
+            item.appendChild(key);
+            item.appendChild(label);
+            legend.appendChild(item);
+        });
+    });
+    
