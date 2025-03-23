@@ -70,7 +70,7 @@ map.on('load', () => {
 
     map.addLayer({
         'id': 'toronto-affordable-housing-points',
-        'type': 'symbol',
+        'type': 'circle',
         'source': 'affordable_housing',
         'paint': {
             'circle-size': 1,
