@@ -9,11 +9,8 @@ const map = new mapboxgl.Map({
     zoom: 11, // starting zoom level.
 });
 
-// add zoom control
-map.addControl(new mapboxgl.NavigationControl());
-
+// add zoom control to the map
 // Add fullscreen option to the map
-map.addControl(new mapboxgl.FullscreenControl());
 
 map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
