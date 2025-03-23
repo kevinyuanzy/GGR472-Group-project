@@ -1,6 +1,7 @@
 // Add the default map token from the Mapbox account
-mapboxgl.accessToken = 'pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xODk5dGxydiJ9._U9znMhQu-2lUtT3MidkQg'; 
-
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW55dWFuenkiLCJhIjoiY201eHprYXU0MGZwejJsb242Y3Nza25oYyJ9.h05hqdnqlx2BwgwbQNuKCg'; 
+// pk.eyJ1IjoieGlleWl3ZTIiLCJhIjoiY201bzlrMzF4MGttMTJub20xODk5dGxydiJ9._U9znMhQu-2lUtT3MidkQg
+// mapbox://styles/xieyiwe2/cm8g96h1u00pb01s5g34z9fnx
 //Import the map style from MapBox. 
 const map = new mapboxgl.Map({
     container: 'map', // map container ID in the index.html file.
