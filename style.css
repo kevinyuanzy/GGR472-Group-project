@@ -9,9 +9,17 @@ html, body {
 /* 让 navbar 永远显示在地图之上 */
 .navbar {
     position: relative;
-    z-index: 10;
+    z-index: 1000;
     width: 100%;
-}
+    background-color: #f28cb1; /* 💗 粉紅色背景，可自訂 */
+    color: rgb(255, 172, 247);              /* 字體變白 */
+  }
+  
+  /* 將 navbar 裡所有的文字元素也變白 */
+  .navbar * {
+    color: rgb(20, 18, 18) !important;
+  }  
+
 
 /* 让地图填充剩余页面，但不会覆盖 navbar */
 .map-container {
@@ -66,9 +74,30 @@ form {
     margin-top: 5px;
 }
 
+.mapboxgl-ctrl-group {
+    background-color: #fce4ec; /* 🌸 淡粉色背景，可自訂 */
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+  }
+  
+  /* 控制按鈕本體的邊框或 hover 效果 */
+  .mapboxgl-ctrl button {
+    background-color: transparent;  /* 避免灰底 */
+    color: #333; /* icon 顏色 */
+  }
+  
+  .mapboxgl-ctrl button:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* hover 背景色 */
+  }
+  
+
+
+
+
 /* 图例样式 */
 .legend-box {
     position: absolute;
+    font: 15px/25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
     bottom: 20px;
     right: 10px;
     z-index: 11;
