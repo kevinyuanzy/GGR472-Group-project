@@ -48,7 +48,6 @@ html, body {
     top: 200px;
     right: 10px;
     z-index: 11;
-    background: rgba(246, 218, 246, 0.476);
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -75,14 +74,14 @@ form {
 }
 
 .mapboxgl-ctrl-group {
-    background-color: #ffd1e295; /* 🌸 淡粉色背景，可自訂 */
+    background-color: #ffd1e2c7; /* 🌸 淡粉色背景，可自訂 */
     border-radius: 6px;
     box-shadow: 0 0 5px white(246, 246, 246, 0.15);
   }
   
   /* 控制按鈕本體的邊框或 hover 效果 */
   .mapboxgl-ctrl button {
-    background-color: transparent;  /* 避免灰底 */
+    background-color: #ffd1e2c7;  /* 避免灰底 */
     color: #333; /* icon 顏色 */
   }
   
@@ -100,10 +99,12 @@ form {
   }
   
   .btn-custom:hover {
-    background-color: #f1dde4;
+    background-color: #f5d7e2;
   }  
 
-
+  #returnbutton {
+    margin-top: 12px;  /* 可以調成 10px / 12px 視覺感更舒服 */
+  }  
 
 /* 图例样式 */
 .legend-box {
