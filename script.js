@@ -15,6 +15,9 @@ map.addControl(new mapboxgl.NavigationControl());
 // Add fullscreen option to the map
 map.addControl(new mapboxgl.FullscreenControl());
 
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
+
 const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     mapboxgl: mapboxgl,
