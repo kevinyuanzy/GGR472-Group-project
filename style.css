@@ -11,7 +11,7 @@ html, body {
     position: relative;
     z-index: 1000;
     width: 100%;
-    background-color: #f28cb1; /* 💗 粉紅色背景，可自訂 */
+    background-color: #fcabc9e2; /* 💗 粉紅色背景，可自訂 */
     color: rgb(255, 172, 247);              /* 字體變白 */
   }
   
@@ -36,7 +36,7 @@ html, body {
     top: 70px; /* 让它不被 navbar 遮挡 */
     right: 10px;
     z-index: 11;
-    background: white;
+    background: #ffd1e28e;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -48,7 +48,7 @@ html, body {
     top: 200px;
     right: 10px;
     z-index: 11;
-    background: white;
+    background: rgba(246, 218, 246, 0.476);
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -75,9 +75,9 @@ form {
 }
 
 .mapboxgl-ctrl-group {
-    background-color: #fce4ec; /* 🌸 淡粉色背景，可自訂 */
+    background-color: #ffd1e295; /* 🌸 淡粉色背景，可自訂 */
     border-radius: 6px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    box-shadow: 0 0 5px white(246, 246, 246, 0.15);
   }
   
   /* 控制按鈕本體的邊框或 hover 效果 */
@@ -87,10 +87,21 @@ form {
   }
   
   .mapboxgl-ctrl button:hover {
-    background-color: rgba(0, 0, 0, 0.05); /* hover 背景色 */
+    background-color: #ffd1e28a(0, 0, 0, 0.05); /* hover 背景色 */
   }
   
-
+  .btn-custom {
+    background-color: #ffffff;
+    color: rgb(27, 24, 24);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .btn-custom:hover {
+    background-color: #f1dde4;
+  }  
 
 
 
