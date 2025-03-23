@@ -11,7 +11,11 @@ html, body {
     position: relative;
     z-index: 1000;
     width: 100%;
+<<<<<<< HEAD
     background-color: #f28cb1; /* 💗 粉紅色背景，可自訂 */
+=======
+    background-color: #fcabc9e2; /* 💗 粉紅色背景，可自訂 */
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
     color: rgb(255, 172, 247);              /* 字體變白 */
   }
   
@@ -19,6 +23,10 @@ html, body {
   .navbar * {
     color: rgb(20, 18, 18) !important;
   }  
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
 
 
 
@@ -51,7 +59,7 @@ html, body {
     top: 70px; /* 让它不被 navbar 遮挡 */
     right: 10px;
     z-index: 11;
-    background: white;
+    background: #ffd1e28e;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -63,7 +71,6 @@ html, body {
     top: 200px;
     right: 10px;
     z-index: 11;
-    background: white;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -90,24 +97,56 @@ form {
 }
 
 .mapboxgl-ctrl-group {
+<<<<<<< HEAD
     background-color: #fce4ec; /* 🌸 淡粉色背景，可自訂 */
     border-radius: 6px;
     box-shadow: 0 0 5px rgba(0,0,0,0.15);
+=======
+    background-color: #ffd1e2c7; /* 🌸 淡粉色背景，可自訂 */
+    border-radius: 6px;
+    box-shadow: 0 0 5px white(246, 246, 246, 0.15);
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
   }
   
   /* 控制按鈕本體的邊框或 hover 效果 */
   .mapboxgl-ctrl button {
+<<<<<<< HEAD
     background-color: transparent;  /* 避免灰底 */
+=======
+    background-color: #ffd1e2c7;  /* 避免灰底 */
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
     color: #333; /* icon 顏色 */
   }
   
   .mapboxgl-ctrl button:hover {
+<<<<<<< HEAD
     background-color: rgba(0, 0, 0, 0.05); /* hover 背景色 */
   }
   
 
 
 
+=======
+    background-color: #ffd1e28a(0, 0, 0, 0.05); /* hover 背景色 */
+  }
+  
+  .btn-custom {
+    background-color: #ffffff;
+    color: rgb(27, 24, 24);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .btn-custom:hover {
+    background-color: #f5d7e2;
+  }  
+
+  #returnbutton {
+    margin-top: 12px;  /* 可以調成 10px / 12px 視覺感更舒服 */
+  }  
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
 
 /* 图例样式 */
 .legend-box {
