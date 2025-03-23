@@ -79,32 +79,39 @@ form {
 }
 
 
+.legend-color {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    top: -1px;  /* 👈 加這個讓它和 icon 一致 */
+  }
+  
 
-#legend-box {
-    position: absolute;
-    bottom: 30px;
-    left: 10px;
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
+
 .legend-item {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
-}
-.legend-color {
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
-    border-radius: 50%;
-}
-.legend-icon {
-    width: 18px;  /* 调整图标大小 */
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .legend-icon {
+    width: 18px;
     height: 18px;
-    margin-right: 8px;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    top: -1px;  /* 關鍵點：整個 icon 容器往上拉一點 */
+  }
+  
+  .legend-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }  
 
