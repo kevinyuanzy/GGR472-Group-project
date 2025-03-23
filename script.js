@@ -16,13 +16,11 @@ map.addControl(new mapboxgl.NavigationControl());
 // Add fullscreen option to the map
 map.addControl(new mapboxgl.FullscreenControl());
 
-
 const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     mapboxgl: mapboxgl,
     countries: "ca" //Canada only
 });
-
 
 // Append geocoder variable to goeocoder HTML div to position on page
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
@@ -31,7 +29,6 @@ document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 document.getElementById('returnbutton').addEventListener('click', () => {
     map.flyTo({ center: [-79.39, 43.73], zoom: 10 });
 });
-
 
 
 map.on('load', () => {
@@ -80,7 +77,6 @@ map.on('load', () => {
             'circle-color': '#260E5D',
         },
     });
-
 
     map.addSource('subway_line', {
         type: 'geojson',
@@ -247,7 +243,6 @@ map.on('load', () => {
             .addTo(map);
     });
 
-
     // pop up, cycling network, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-police-facilities-points', () => {
         map.getCanvas().style.cursor = 'pointer';
@@ -268,7 +263,6 @@ map.on('load', () => {
             .addTo(map);
     });
  
-
 
     map.on('load', () => {
         const legend = document.getElementById('legend');
@@ -305,4 +299,5 @@ map.on('load', () => {
             legend.appendChild(item);
         });
     });
+
     
