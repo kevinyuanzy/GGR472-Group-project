@@ -5,21 +5,45 @@ html, body {
     height: 100%;
 }
 
+
 /* 让 navbar 永远显示在地图之上 */
 .navbar {
     position: relative;
-    z-index: 10;
+    z-index: 1000;
     width: 100%;
-}
+    background-color: #f28cb1; /* 💗 粉紅色背景，可自訂 */
+    color: rgb(255, 172, 247);              /* 字體變白 */
+  }
+  
+  /* 將 navbar 裡所有的文字元素也變白 */
+  .navbar * {
+    color: rgb(20, 18, 18) !important;
+  }  
 
-/* 让地图填充剩余页面，但不会覆盖 navbar */
-.map-container {
-    position: absolute;
-    top: 56px; /* 适配 Bootstrap 默认 navbar 高度 */
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
+
+
+
+  .map-wrapper {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 56px); /* 减去 navbar 高度 */
+    padding: 20px 10px 20px 20px; /* 上右下左：地图左边、下边加点空白 */
+    box-sizing: border-box;
+  }
+  
+  .map-container {
+    flex: 4.8; /* 地图变宽一点 */
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 地图加点阴影更像图1 */
+  }
+  
+  .right-placeholder {
+    flex: 1;
+    padding: 10px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+  }
 
 /* 搜索框样式 */
 .map-search-container {
@@ -65,9 +89,30 @@ form {
     margin-top: 5px;
 }
 
+.mapboxgl-ctrl-group {
+    background-color: #fce4ec; /* 🌸 淡粉色背景，可自訂 */
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+  }
+  
+  /* 控制按鈕本體的邊框或 hover 效果 */
+  .mapboxgl-ctrl button {
+    background-color: transparent;  /* 避免灰底 */
+    color: #333; /* icon 顏色 */
+  }
+  
+  .mapboxgl-ctrl button:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* hover 背景色 */
+  }
+  
+
+
+
+
 /* 图例样式 */
 .legend-box {
     position: absolute;
+    font: 15px/25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
     bottom: 20px;
     right: 10px;
     z-index: 11;
@@ -112,3 +157,5 @@ form {
     display: block;
     object-fit: contain;
   }
+
+
