@@ -6,7 +6,7 @@ const map = new mapboxgl.Map({
     container: 'map', // map container ID in the index.html file.
     style: 'mapbox://styles/kevinyuanzy/cm8gdgpss00fk01ry06upe52t', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
-    zoom: 11, // starting zoom level.
+    zoom: 10.2, // starting zoom level.
 });
 
 // add zoom control to the map
@@ -72,10 +72,11 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'affordable_housing',
         'paint': {
-            'circle-color': '#260E5D',
+            'circle-color': '#c26bed',
             'circle-size': 1 
         },
     });
+
 
     map.addSource('subway_line', {
         type: 'geojson',
@@ -115,6 +116,8 @@ map.on('load', () => {
             'circle-stroke-width': 1
         },
     });
+
+
 
     map.addSource('health_services', {
         type: 'geojson',
@@ -165,18 +168,6 @@ map.on('load', () => {
         );
     });
 
-    document.getElementById('subwaycheck').addEventListener('change', (e) => {
-        map.setLayoutProperty(
-            'toronto-subway-stations-points',
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-        );
-        map.setLayoutProperty(
-            'toronto-subway-line',
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-        );
-    });
 });
 
     // Pop-up windows that appear on a mouse click or hover
@@ -290,9 +281,10 @@ map.on('load', () => {
         const layers = [
             { id: 'toronto-signature-sites-points', name: 'Signature Sites', type: 'icon', icon: 'attraction' },
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
-            { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#260E5D' },
+            { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#c26bed' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
-            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'color', color: '#f5f5f5'},
+            { id: 'toronto-subway-line', name: 'Subway Line', type: 'color', color: '#00923f' },
+            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'icon', icon: 'subway' },
         ];
     
         layers.forEach(layer => {
@@ -303,9 +295,9 @@ map.on('load', () => {
             key.className = 'legend-color';
     
             if (layer.type === 'color') {
-                key.style.backgroundColor = layer.color; // 显示颜色标识
+                key.style.backgroundColor = layer.color;  // 显示颜色标识
             } else if (layer.type === 'icon') {
-                key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
+                key.innerHTML = `< img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
             }
     
             // 添加 layer 名称
@@ -318,5 +310,3 @@ map.on('load', () => {
             legend.appendChild(item);
         });
     });
-
-    
