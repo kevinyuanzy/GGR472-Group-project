@@ -71,9 +71,9 @@ map.on('load', () => {
         'id': 'toronto-affordable-housing-points',
         'type': 'circle',
         'source': 'affordable_housing',
-        'paint': {
-            'circle-color': '#c26bed',
-            'circle-size': 1 
+        'layout': {
+            'icon-image': 'lodging',
+            'icon-size': 1 
         },
     });
 
@@ -168,6 +168,18 @@ map.on('load', () => {
         );
     });
 
+    document.getElementById('subwaycheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-subway-stations-points',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+        map.setLayoutProperty(
+            'toronto-subway-line',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+    });
 });
 
     // Pop-up windows that appear on a mouse click or hover
@@ -283,8 +295,7 @@ map.on('load', () => {
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
             { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#c26bed' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
-            { id: 'toronto-subway-line', name: 'Subway Line', type: 'color', color: '#00923f' },
-            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'icon', icon: 'subway' },
+            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'color', color: '#f5f5f5'},
         ];
     
         layers.forEach(layer => {
@@ -295,7 +306,7 @@ map.on('load', () => {
             key.className = 'legend-color';
     
             if (layer.type === 'color') {
-                key.style.backgroundColor = layer.color;  // 显示颜色标识
+                key.style.backgroundColor = layer.color; // 显示颜色标识
             } else if (layer.type === 'icon') {
                 key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
             }
@@ -310,6 +321,5 @@ map.on('load', () => {
             legend.appendChild(item);
         });
     });
-    
 
     

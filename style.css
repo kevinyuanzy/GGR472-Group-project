@@ -7,50 +7,144 @@ html, body {
 
 /* Navbar */
 .navbar {
-  position: relative;
-  z-index: 1000;
-  width: 100%;
-  background-color: #fcabc9e2;
-  color: rgb(255, 172, 247);
-}
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    background-color: #f28cb1; /* 💗 粉紅色背景，可自訂 */
+    background-color: #fcabc9e2; /* 💗 粉紅色背景，可自訂 */
+    color: rgb(255, 172, 247);              /* 字體變白 */
+  }
+  
+  /* 將 navbar 裡所有的文字元素也變白 */
+  .navbar * {
+    color: rgb(20, 18, 18) !important;
+  }  
+<<<<<<< HEAD
+=======
 
-.navbar * {
-  color: rgb(20, 18, 18) !important;
-}
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
 
-/* 页面主布局 */
-.layout {
-  display: flex;
-  width: 100%;
-  height: calc(100vh - 56px); /* 移除 navbar 高度 */
-  box-sizing: border-box;
-  padding: 10px 10px 10px 10px;
-  gap: 10px;
-}
 
-/* 地图加宽（从85% → 94%）*/
-.map {
-  width: 80%;
-  height: 100%;
-  border: 3px solid #aa5e79;
-  box-sizing: border-box;
-  border-radius: 12px; /* 🌟 四角圆润 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* 🌟 添加阴影 */
-}
+
+
+  .map-wrapper {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 56px); /* 减去 navbar 高度 */
+    padding: 20px 10px 20px 20px; /* 上右下左：地图左边、下边加点空白 */
+    box-sizing: border-box;
+  }
+  
+  .map-container {
+    flex: 4.8; /* 地图变宽一点 */
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 地图加点阴影更像图1 */
+  }
+  
+  .right-placeholder {
+    flex: 1;
+    padding: 10px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+  }
 
 /* 搜索框 */
 .map-search-container {
-  position: absolute;
-  top: 70px;
-  left: 880px;
-  z-index: 11;
-  background: #ffd1e28e;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 70px; /* 让它不被 navbar 遮挡 */
+    right: 10px;
+    z-index: 11;
+    background: #ffd1e28e;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* 图例盒子 */
+/* Data container: searchbox */
+.map-data-container {
+    position: absolute;
+    top: 200px;
+    right: 10px;
+    z-index: 11;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.option-label {
+    font: 15px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-weight: bold;
+    width: 95%;
+    padding-bottom: 8px;
+}
+
+.form-check-label {
+    font: 14px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+form {
+    padding-bottom: 20px;
+}
+
+/* 过滤选项复选框的样式 */
+.form-check {
+    margin-top: 5px;
+}
+
+.mapboxgl-ctrl-group {
+<<<<<<< HEAD
+    background-color: #fce4ec; /* 🌸 淡粉色背景，可自訂 */
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+=======
+    background-color: #ffd1e2c7; /* 🌸 淡粉色背景，可自訂 */
+    border-radius: 6px;
+    box-shadow: 0 0 5px white(246, 246, 246, 0.15);
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
+  }
+  
+  /* 控制按鈕本體的邊框或 hover 效果 */
+  .mapboxgl-ctrl button {
+<<<<<<< HEAD
+    background-color: transparent;  /* 避免灰底 */
+=======
+    background-color: #ffd1e2c7;  /* 避免灰底 */
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
+    color: #333; /* icon 顏色 */
+  }
+  
+  .mapboxgl-ctrl button:hover {
+<<<<<<< HEAD
+    background-color: rgba(0, 0, 0, 0.05); /* hover 背景色 */
+  }
+  
+
+
+
+=======
+    background-color: #ffd1e28a(0, 0, 0, 0.05); /* hover 背景色 */
+  }
+  
+  .btn-custom {
+    background-color: #ffffff;
+    color: rgb(27, 24, 24);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .btn-custom:hover {
+    background-color: #f5d7e2;
+  }  
+
+  #returnbutton {
+    margin-top: 12px;  /* 可以調成 10px / 12px 視覺感更舒服 */
+  }  
+>>>>>>> 2259a2942c7007d9317fff25511ae123cf67151a
+
+/* 图例样式 */
 .legend-box {
   position: absolute;
   font: 15px/25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
@@ -74,138 +168,28 @@ html, body {
 }
 
 .legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .legend-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    top: -1px;  /* 關鍵點：整個 icon 容器往上拉一點 */
+  }
+  
+  .legend-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
 
-.legend-icon {
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  top: -1px;
-}
-
-.legend-icon img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-}
-
-/* 右上角的 filter 面板 */
-.map-data-container {
-  position: absolute;
-  top: 280px;
-  right: 10px;
-  z-index: 11;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* 控制按钮风格 */
-.mapboxgl-ctrl-group {
-  background-color: #ffd1e2c7;
-  border-radius: 6px;
-  box-shadow: 0 0 5px white(246, 246, 246, 0.15);
-}
-
-.mapboxgl-ctrl button {
-  background-color: #ffd1e2c7;
-  color: #333;
-}
-
-.mapboxgl-ctrl button:hover {
-  background-color: #f5d7e2;
-}
-
-/* 搜索按钮 */
-.btn-custom {
-  background-color: #ffffff;
-  color: rgb(27, 24, 24);
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.btn-custom:hover {
-  background-color: #f5d7e2;
-}
-
-#returnbutton {
-  margin-top: 12px;
-}
-
-/* Checkbox 样式 */
-.form-check {
-  margin-top: 5px;
-}
-
-.form-check-label {
-  font: 14px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-}
-
-.option-label {
-  font: 15px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-  font-weight: bold;
-  width: 95%;
-  padding-bottom: 8px;
-}
-
-input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #ff82ac;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-input[type="checkbox"] {
-  /* 完全自定义，隐藏系统默认 */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ff82ac;
-  border-radius: 6px;
-  background-color: white;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-/* 粉色背景 + 白色勾勾 */
-input[type="checkbox"]:checked {
-  background-color: #ff82ac;
-  border-color: #ff82ac;
-}
-
-/* 鼠标悬停加深边框 */
-input[type="checkbox"]:hover {
-  border-color: #ff5c9e;
-}
-
-/* 焦点无系统高亮 */
-input[type="checkbox"]:focus {
-  outline: none;
-  box-shadow: none;
-}
 
