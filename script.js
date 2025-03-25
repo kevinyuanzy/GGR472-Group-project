@@ -6,7 +6,7 @@ const map = new mapboxgl.Map({
     container: 'map', // map container ID in the index.html file.
     style: 'mapbox://styles/kevinyuanzy/cm8gdgpss00fk01ry06upe52t', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
-    zoom: 11, // starting zoom level.
+    zoom: 10.2, // starting zoom level.
 });
 
 // add zoom control to the map
@@ -71,15 +71,16 @@ map.on('load', () => {
         'id': 'toronto-affordable-housing-points',
         'type': 'circle',
         'source': 'affordable_housing',
-        'layout': {
-            'icon-image': 'lodging',
-            'icon-size': 1 
+        'paint': {
+            'circle-color': '#c26bed',
+            'circle-size': 1 
         },
     });
 
+
     map.addSource('subway_line', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayRoutes.geojson' // The URL to GeoJson incompleted portion of subway line.
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/ttcsubwayroute_updated.geojson' // The URL to GeoJson incompleted portion of subway line.
     });
 
     map.addLayer({
@@ -87,25 +88,36 @@ map.on('load', () => {
         'type': 'line', 
         'source': 'subway_line',
         'paint': {
-            'line-color': '#00923f',
-            'line-width': 1,
+            'line-color': [
+                'step', // STEP expression produces stepped results based on value pairs
+                ['get', 'Line'], // GET expression retrieves property value from 'population' data field
+                '#ffffff', // Colour assigned to any values < first step
+                1, '#F8C300', // Colours assigned to values >= each step
+                2, '#00923F',
+                4, '#A21A68'
+            ],
+            'line-width': 1.5,
         },
     });
 
     map.addSource('subway_stations', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/TorontoSubwayStationsRidership.geojson' // The URL to GeoJson completed portion of subway line.
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/ttcstations.geojson' // The URL to GeoJson completed portion of subway line.
     });
 
     map.addLayer({
         'id': 'toronto-subway-stations-points',
-        'type': 'symbol',
+        'type': 'circle',
         'source': 'subway_stations',
-        'layout': {
-            'icon-image': 'paris-transilien',
-            'icon-size': 1  
+        'paint': {
+            'circle-color': '#f5f5f5',
+            'circle-radius': 5,
+            'circle-stroke-color': '#000000',
+            'circle-stroke-width': 1
         },
     });
+
+
 
     map.addSource('health_services', {
         type: 'geojson',
@@ -269,7 +281,7 @@ map.on('load', () => {
         const layers = [
             { id: 'toronto-signature-sites-points', name: 'Signature Sites', type: 'icon', icon: 'attraction' },
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
-            { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#260E5D' },
+            { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#c26bed' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
             { id: 'toronto-subway-line', name: 'Subway Line', type: 'color', color: '#00923f' },
             { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'icon', icon: 'subway' },
@@ -285,7 +297,7 @@ map.on('load', () => {
             if (layer.type === 'color') {
                 key.style.backgroundColor = layer.color;  // 显示颜色标识
             } else if (layer.type === 'icon') {
-                key.innerHTML = `< img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
+                key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
             }
     
             // 添加 layer 名称
