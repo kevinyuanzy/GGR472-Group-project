@@ -168,6 +168,18 @@ map.on('load', () => {
         );
     });
 
+    document.getElementById('subwaycheck').addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'toronto-subway-stations-points',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+        map.setLayoutProperty(
+            'toronto-subway-line',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+    });
 });
 
     // Pop-up windows that appear on a mouse click or hover
