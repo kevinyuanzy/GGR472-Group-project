@@ -178,7 +178,6 @@ map.on('load', () => {
         },
     });
 
-
     map.addSource('subway_line', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/ttcsubwayroute_updated.geojson' // The URL to GeoJson incompleted portion of subway line.
@@ -339,7 +338,6 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
 
-
 });
 
     // Pop-up windows that appear on a mouse click or hover
@@ -468,6 +466,7 @@ map.on('load', () => {
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
             { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#c26bed' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
+    
         ];
 
         // Subway legend layers
@@ -475,6 +474,7 @@ map.on('load', () => {
         { id: 'subway-line-1', name: 'Line 1', type: 'color', color: '#F8C300' },
         { id: 'subway-line-2', name: 'Line 2', type: 'color', color: '#00923F' },
         { id: 'subway-line-4', name: 'Line 4', type: 'color', color: '#A21A68' },
+        { id: 'toronto-subway-stations-points', name: 'Subway Station', type: 'color', color: '#f3f0f5' },
         ];
 
         // Hexgrid legend layers

@@ -242,9 +242,8 @@ input[type="checkbox"]:focus {
   box-shadow: none;
 }
 
-/* 让 Filter Map View 贴紧右侧 */
+/* 🔹 让 Filter Map View 贴紧右侧 */
 .map-data-container {
-  margin-bottom: 5px;
   position: absolute;
   top: 65px; /* 根据 navbar 调整 */
   right: 10px; /* 靠右 */
@@ -253,23 +252,54 @@ input[type="checkbox"]:focus {
   padding: 15px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 }
 
-/* 让 Legend 贴紧 Filter Map View 下方 */
+/* 🔹 让 Legend 贴紧 Filter Map View 下方，并自动扩展高度 */
 .legend-box {
   position: absolute;
-  height: 200px; /* 控制高度 */
-  top: 335px; /* 调整这个值，确保它在 Filter Map View 下面 */
-  right: 10px; /* 靠右 */
-  width: 280px; /* 控制宽度，和 Filter Map View 一致 */
+  top: 335px;
+  right: 10px;
+  width: 280px;
+  height: 200px; /* 让它至少 200px，但可以变高 */
   background: white;
-  padding: 15px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.map-data-container, .legend-box {
-  border: 3px solid #aa5e79; /* 设置粉色边框 */
-  border-radius: 10px; /* 让边角更圆滑 */
+/* 🔹 让 Homicide Hexgrid 直接在 Legend 下面 */
+.hexgridlegend {
+  position: absolute;
+  top: 555px;
+  right: 10px;
+  width: 280px;
+  height: 200px; /* 让它至少 200px，但可以变高 */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
+
+/* 🔹 让 Legend 和 Filter Box 统一边框样式 */
+.map-data-container, .legend-box, .hexgridlegend {
+  border: 3px solid #aa5e79; /* 粉色边框 */
+  border-radius: 10px;
+}
+
+/* 🔹 让 Subway Legend 固定在地图左下角 */
+.subwaylegend {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: white;
+  padding: 20px;
+  border: 3px solid #a65c7a;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  width: 190px; /* 让它根据内容自动调整宽度 */
+  min-width: 100px; /* 防止太窄 */
+}
+
+
 
