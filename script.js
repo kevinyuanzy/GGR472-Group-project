@@ -119,6 +119,21 @@ map.on('load', () => {
             .addTo(map);
     });
 
+    map.addSource('homicide_locations', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Homicides_Open_Data_ASR_RC_TBL_002_-5278672909720192143.geojson' // The URL to GeoJson completed portion of subway line.
+    });
+
+    map.addLayer({
+        'id': 'toronto-homicide-locations-points', 
+        'type': 'circle', 
+        'source': 'homicide_locations',
+        'paint': {
+            'circle-color': '#000000',
+            'circle-size': 1 
+        },
+    });
+
     map.addSource('signature_sites', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Toronto%20Signature%20Sites%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
@@ -245,7 +260,8 @@ map.on('load', () => {
     map.setLayoutProperty('toronto-subway-line', 'visibility', 'none');
     map.setLayoutProperty('toronto-subway-stations-points', 'visibility', 'none');
     map.setLayoutProperty('HomicideFill', 'visibility', 'none');
-
+    map.setLayoutProperty('toronto-homicide-locations-points', 'visibility', 'none');
+    
     
     //Change map layer display based on check box using setLayoutProperty method
     document.getElementById('signaturecheck').addEventListener('change', (e) => {
@@ -308,8 +324,12 @@ map.on('load', () => {
             'visibility',
         e.target.checked ? 'visible' : 'none'
         );
+        map.setLayoutProperty(
+            'toronto-homicide-locations-points',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
     });
-
     
 
     map.on('mouseenter', 'line2-completed-stations', () => {
@@ -320,6 +340,8 @@ map.on('load', () => {
     map.on('mouseleave', 'line2-completed-stations', () => {
         map.getCanvas().style.cursor = '';
     });
+
+
 });
 
     // Pop-up windows that appear on a mouse click or hover
@@ -373,9 +395,6 @@ map.on('load', () => {
         // 更新 buffer 图层的数据源
         map.getSource('housing-buffer').setData(buffered);
     });
-
-
-
 
     // pop up, cycling network, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-health-services-points', () => {
@@ -449,8 +468,6 @@ map.on('load', () => {
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
             { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#c26bed' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
-            { id: 'toronto-subway-line', name: 'Subway Line', type: 'color', color: '#00923f' },
-            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'icon', icon: 'subway' },
         ];
     
         layers.forEach(layer => {
