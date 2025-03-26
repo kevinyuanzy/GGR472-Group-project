@@ -30,19 +30,95 @@ document.getElementById('returnbutton').addEventListener('click', () => {
 });
 
 // Create empty variable to hold point features of hexgrid
-let collisiongeojson;
+let Homicidegeojson;
 
-// Use fetch function to access geojson file of collision cases from the online repository
+// Use fetch function to access geojson file of Homicide cases from the online repository
 // Convert the response to JSON format and then store the response in the variable
-fetch("https://raw.githubusercontent.com/kevinyuanzy/472-Lab4-KY/refs/heads/main/data/pedcyc_collision_06-21.geojson")
+fetch("https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Homicides_Open_Data_ASR_RC_TBL_002_-5278672909720192143.geojson")
     .then(response => response.json())
     .then(response => {
         console.log(response); //Check response in console
-        collisiongeojson = response; // Store geojson as variable using URL from fetch response
+        Homicidegeojson = response; // Store geojson as variable using URL from fetch response
     });
 
 map.on('load', () => {
-  
+    // Create a bounding box around the Homicide point data
+
+    let envresult = turf.envelope(Homicidegeojson);
+    console.log(envresult.bbox)
+
+    // Enlarge the bounding box by 10 percent
+    let bboxscaled = turf.transformScale(envresult, 1.1);
+    console.log(bboxscaled)
+
+    // Access and store the bounding box coordinates
+    // Stored as [minX, minY, maxX, maxY]
+    let bboxcoords = [
+        bboxscaled.geometry.coordinates[0][0][0],
+        bboxscaled.geometry.coordinates[0][0][1],
+        bboxscaled.geometry.coordinates[0][2][0],
+        bboxscaled.geometry.coordinates[0][2][1],
+    ];
+
+    console.log(bboxcoords)
+
+    // Create the hexgrid
+    let hexdata = turf.hexGrid(bboxcoords, 0.6, {units: "kilometers"});
+    console.log(hexdata)
+
+    // use turf.collect() to collect cases in each hexagon
+    let homicidehex = turf.collect(hexdata, Homicidegeojson, "_id", "values")
+
+    console.log(homicidehex)
+
+    // Create new variable to store max number of Homicide
+    let maxHomicides = 0;
+
+    // Count the cases in each hexagon
+    homicidehex.features.forEach((feature) => {
+        feature.properties.COUNT = feature.properties.values.length;
+        if (feature.properties.COUNT > maxHomicides) {
+            maxHomicides = feature.properties.COUNT;
+        }
+    });
+
+    map.addSource('HomicideGrid', {
+        type: 'geojson',
+        data: homicidehex // The URL to my GeoJson polygon.
+    });
+    
+    // Add layer style to the map to represent park polygons.
+    map.addLayer({
+        'id': 'HomicideFill',
+        'type': 'fill',
+        'source': 'HomicideGrid',
+        'paint': {
+            'fill-color': [
+                'step', // STEP expression produces stepped results based on value pairs
+                ['get', 'COUNT'], // GET expression retrieves property value from 'population' data field
+                '#ffffff', // Colour assigned to any values < first step
+                1, '#F0F9E8', // Colours assigned to values >= each step
+                6, '#CCEBC5',
+                11, '#A8DDB5',
+                16, '#7BCCC4',
+                21, '#43A2CA',
+                31, '#0868AC',
+                maxHomicides, '#000000'
+            ],
+            'fill-opacity': 0.8,
+            'fill-outline-color': 'black',
+        },
+        filter: ["!=", "COUNT", 0],
+    });
+
+    //Create a popup, so the number of Homicide cases will appear when mouse clicks on features.
+    map.on('click', 'HomicideFill', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML("Homicide Count: " + e.features[0].properties.COUNT)          
+            .addTo(map);
+    });
+
     map.addSource('signature_sites', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Toronto%20Signature%20Sites%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
@@ -168,7 +244,7 @@ map.on('load', () => {
     map.setLayoutProperty('toronto-health-services-points', 'visibility', 'none');
     map.setLayoutProperty('toronto-subway-line', 'visibility', 'none');
     map.setLayoutProperty('toronto-subway-stations-points', 'visibility', 'none');
-    map.setLayoutProperty('CollisionFill', 'visibility', 'none');
+    map.setLayoutProperty('HomicideFill', 'visibility', 'none');
 
     
     //Change map layer display based on check box using setLayoutProperty method
@@ -228,88 +304,13 @@ map.on('load', () => {
     //Change map layer display based on check box using setLayoutProperty method
     document.getElementById('hexgridcheck').addEventListener('change', (e) => {
         map.setLayoutProperty(
-            'CollisionFill',
+            'HomicideFill',
             'visibility',
         e.target.checked ? 'visible' : 'none'
         );
     });
 
-    // Create a bounding box around the collision point data
-
-    let envresult = turf.envelope(collisiongeojson);
-    console.log(envresult.bbox)
-
-    // Enlarge the bounding box by 10 percent
-    let bboxscaled = turf.transformScale(envresult, 1.1);
-    console.log(bboxscaled)
-
-    // Access and store the bounding box coordinates
-    // Stored as [minX, minY, maxX, maxY]
-    let bboxcoords = [
-        bboxscaled.geometry.coordinates[0][0][0],
-        bboxscaled.geometry.coordinates[0][0][1],
-        bboxscaled.geometry.coordinates[0][2][0],
-        bboxscaled.geometry.coordinates[0][2][1],
-    ];
-
-    console.log(bboxcoords)
-
-    // Create the hexgrid
-    let hexdata = turf.hexGrid(bboxcoords, 0.5, {units: "kilometers"});
-    console.log(hexdata)
-
-    // use turf.collect() to collect cases in each hexagon
-    let collishex = turf.collect(hexdata, collisiongeojson, "id_", "values")
-
-    console.log(collishex)
-
-    // Create new variable to store max number of collision
-    let maxcollisions = 0;
-
-    // Count the cases in each hexagon
-    collishex.features.forEach((feature) => {
-        feature.properties.COUNT = feature.properties.values.length;
-        if (feature.properties.COUNT > maxcollisions) {
-            maxcollisions = feature.properties.COUNT;
-        }
-    });
-
-    map.addSource('CollisionGrid', {
-        type: 'geojson',
-        data: collishex // The URL to my GeoJson polygon.
-    });
     
-    // Add layer style to the map to represent park polygons.
-    map.addLayer({
-        'id': 'CollisionFill',
-        'type': 'fill',
-        'source': 'CollisionGrid',
-        'paint': {
-            'fill-color': [
-                'step', // STEP expression produces stepped results based on value pairs
-                ['get', 'COUNT'], // GET expression retrieves property value from 'population' data field
-                '#ffffff', // Colour assigned to any values < first step
-                1, '#F0F9E8', // Colours assigned to values >= each step
-                6, '#CCEBC5',
-                11, '#A8DDB5',
-                16, '#7BCCC4',
-                21, '#43A2CA',
-                31, '#0868AC',
-                maxcollisions, '#000000'
-            ],
-            'fill-opacity': 0.8,
-            'fill-outline-color': 'black',
-        },
-        filter: ["!=", "COUNT", 0],
-    });
-
-    //Create a popup, so the number of collision cases will appear when mouse clicks on features.
-    map.on('click', 'CollisionFill', (e) => {
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML("Collision Count: " + e.features[0].properties.COUNT)          
-            .addTo(map);
-    });
 
     map.on('mouseenter', 'line2-completed-stations', () => {
         map.getCanvas().style.cursor = 'pointer';
