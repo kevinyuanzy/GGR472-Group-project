@@ -209,7 +209,7 @@ input[type="checkbox"]:focus {
   top: 560px;
   right: 10px !important;  
   width: 280px;
-  height: 250px; /* 让它至少 200px，但可以变高 */
+  height: 220px; /* 让它至少 200px，但可以变高 */
   background: white;
   padding: 10px;
   border-radius: 10px;
