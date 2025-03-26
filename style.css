@@ -206,7 +206,7 @@ input[type="checkbox"]:focus {
   position: absolute;
   font-size: small;
   bottom: 10px;
-  top: 580px;
+  top: 560px;
   right: 10px !important;  
   width: 280px;
   height: 250px; /* 让它至少 200px，但可以变高 */
