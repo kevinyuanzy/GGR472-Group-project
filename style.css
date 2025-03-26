@@ -18,6 +18,24 @@ html, body {
   color: rgb(20, 18, 18) !important;
 }
 
+.navbar-collapse {
+  justify-content: flex-start !important; /* 让菜单对齐左侧 */
+}
+
+.navbar-nav {
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 0 !important; /* 确保列表无额外间距 */
+  padding-left: 0 !important;
+}
+
+.navbar-brand {
+  font-weight: bold; /* 加粗 */
+  font-size: 20px; /* 字体稍微变大 */
+  padding-left: 330px; /* 向右移动一点 */
+}
+
+
 /* 页面主布局 */
 .layout {
   display: flex;
