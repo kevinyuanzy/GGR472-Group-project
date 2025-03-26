@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./about.html">About</a >
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="toronto.html">Toronto</a > 
+                    </li>
                 </ul>
             </div>
         </div>
@@ -113,6 +116,61 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+
+<!-- Bootstrap 弹窗 -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- 弹窗头部 -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Welcome to the Web Map 🗺️</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- 弹窗主体 -->
+            <div class="modal-body" id="modalBody">
+                <p>The Web Map provides interactive features to explore the city's key infrastructure, resources, and transit information. 🌆✨</p>
+            </div>
+            <!-- 弹窗底部按钮 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Get Started! 🚀</button>
+                <button type="button" class="btn btn-secondary" id="showInstructions">Instructions 📌</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS（必须有，否则 Modal 无法显示） -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- 让弹窗在页面加载时自动弹出 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+        myModal.show();
+    });
+
+    // 监听 "Instructions" 按钮，切换弹窗内容
+    document.getElementById("showInstructions").addEventListener("click", function() {
+        document.getElementById("modalTitle").innerText = "Instructions 📌";  // 修改标题
+        document.getElementById("modalBody").innerHTML = `
+            <h5>Key Features of This Web Map: Explore & Plan 🏙️</h5>
+            
+            <h6>🌍 Explore</h6>
+            <p><strong>🗂️ Control the Map Layers</strong><br>
+            Use the sidebar toggles or filter bar to show or hide different layers and customize the map to your needs.</p>
+            
+            <p><strong>🔍 Need a Specific Location?</strong><br>
+            Enter a name into the search box in the top navigation menu to find a location instantly.</p>
+            
+            <p><strong>ℹ️ Need More Information?</strong><br>
+            Click on a certain symbol on the map to open an information pop-up with relevant information, such as the address and the name.</p>
+            
+            <p><strong>🏠 Exploring Affordable Housing Options</strong><br>
+            Clicking on an Affordable Housing location will automatically generate a 1km buffer zone.  
+            This buffer highlights nearby services such as 🚇 subway stations, 🏥 health facilities, etc.</p>
+        `;
+    });
+</script>
 
 </body>
 </html>
