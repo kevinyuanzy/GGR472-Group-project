@@ -1,11 +1,18 @@
-# 🗺️ GGR472 Project - Toronto Living Guide (Winter 2024)
-By Yiwen Xie, Zhiyi Yuan, Huailun Jiang**  
-🔗 Live Map: file:///Users/xieyiwen/Desktop/GitHub/GGR472-Group-project-1/index.html
+# GGR472 Project - T.O. Life Map: Toronto Living Guide 🗺️🌆
+
+By Huailun Jiang, Yiwen Xie, Kevin Yuan  
+Course: GGR472   
+Instructor: Professor Lendsey Smith
+
+🔗 Link to published web map: [https://kevinyuanzy.github.io/GGR472-Group-project](https://kevinyuanzy.github.io/GGR472-Group-project)
 
 ---
 
 ## 📌 Overview
-The **Toronto Living Guide Web Map** is designed to help newcomers explore Toronto’s urban infrastructure, including **affordable housing sites, police stations, health services, and subway lines**. Users can interact with the map by toggling layers, clicking on features for details, and even planning routes.
+
+**T.O. Life Map** is an interactive web map built for the GGR472 course. This project aims to offer an accessible spatial guide to key infrastructure and resources around the City of Toronto, with a specific focus on features like affordable housing, public health services, policing, and homicide hotspots, for newcomers.
+
+The map enables users to explore and analyze these layers visually through interactive elements, geolocation tools, pop-ups, and dynamic filtering.
 
 ---
 
@@ -54,6 +61,7 @@ The **Toronto Living Guide Web Map** is designed to help newcomers explore Toron
 - Provides **project background**, data sources, and related links.
 
 ---
+
 
 ### 🛠️ **Interactivity**
 - **✅ Layer Control:** Toggle layers on/off via checkboxes.
