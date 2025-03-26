@@ -6,10 +6,9 @@ const map = new mapboxgl.Map({
     container: 'map', // map container ID in the index.html file.
     style: 'mapbox://styles/kevinyuanzy/cm8gdgpss00fk01ry06upe52t', // style URL from created MapBox style.
     center: [-79.391820, 43.701268], // starting position [lng, lat]. 
-    zoom: 11, // starting zoom level.
+    zoom: 10.2, // starting zoom level.
 });
 
-<<<<<<< Updated upstream
 // add zoom control to the map
 // Add fullscreen option to the map
 
@@ -73,10 +72,11 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'affordable_housing',
         'paint': {
-            'circle-color': '#260E5D',
+            'circle-color': '#c26bed',
             'circle-size': 1 
         },
     });
+
 
     map.addSource('subway_line', {
         type: 'geojson',
@@ -117,6 +117,8 @@ map.on('load', () => {
         },
     });
 
+
+
     map.addSource('health_services', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Health%20Services%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
@@ -131,6 +133,32 @@ map.on('load', () => {
             'icon-size': 1  
         },
     });
+
+    map.addSource('housing-buffer', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: []
+        }
+      });
+      
+      // 添加 buffer 图层
+      map.addLayer({
+        id: 'housing-buffer-layer',
+        type: 'fill',
+        source: 'housing-buffer',
+        paint: {
+          'fill-color': '#6a00ff',
+          'fill-opacity': 0.3
+        }
+      });
+
+    map.setLayoutProperty('toronto-affordable-housing-points', 'visibility', 'visible');
+    map.setLayoutProperty('toronto-signature-sites-points', 'visibility', 'none');
+    map.setLayoutProperty('toronto-police-facilities-points', 'visibility', 'none');
+    map.setLayoutProperty('toronto-health-services-points', 'visibility', 'none');
+    map.setLayoutProperty('toronto-subway-line', 'visibility', 'none');
+    map.setLayoutProperty('toronto-subway-stations-points', 'visibility', 'none');
 
     
     //Change map layer display based on check box using setLayoutProperty method
@@ -166,18 +194,6 @@ map.on('load', () => {
         );
     });
 
-    document.getElementById('subwaycheck').addEventListener('change', (e) => {
-        map.setLayoutProperty(
-            'toronto-subway-stations-points',
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-        );
-        map.setLayoutProperty(
-            'toronto-subway-line',
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-        );
-    });
 });
 
     // Pop-up windows that appear on a mouse click or hover
@@ -217,11 +233,23 @@ map.on('load', () => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(
-                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
-                 <b>Area-Name:</b> ${e.features[0].properties.AREA_NAME}`
+                `<b>Address:</b> ${e.features[0].properties.Address}<br>
+                 <b>Ward Number:</b> ${e.features[0].properties.Ward_Number}<br>
+                 <b>Construction Start Date:</b> ${e.features[0].properties.Construction_Start_Date}`
             )
             .addTo(map);
+        
+        // 创建 buffer（单位：kilometers）
+        const coords = e.lngLat; // ✅ 先从 e 事件中取出点击位置
+        const point = turf.point([coords.lng, coords.lat]);
+        const buffered = turf.buffer(point, 1, { units: 'kilometers' });
+
+        // 更新 buffer 图层的数据源
+        map.getSource('housing-buffer').setData(buffered);
     });
+
+
+
 
     // pop up, cycling network, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-health-services-points', () => {
@@ -259,7 +287,9 @@ map.on('load', () => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(
-                `<b>Name:</b> ${e.features[0].properties.AREA_NAME}<br>`
+                `<b>District:</b> ${e.features[0].properties.district}<br>
+                 <b>Site Name:</b> ${e.features[0].properties.site_name}<br>
+                 <b>Comments:</b> ${e.features[0].properties.comments}<br>`
             )
             .addTo(map);
     });
@@ -291,9 +321,10 @@ map.on('load', () => {
         const layers = [
             { id: 'toronto-signature-sites-points', name: 'Signature Sites', type: 'icon', icon: 'attraction' },
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
-            { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#260E5D' },
+            { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#c26bed' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
-            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'color', color: '#f5f5f5'},
+            { id: 'toronto-subway-line', name: 'Subway Line', type: 'color', color: '#00923f' },
+            { id: 'toronto-subway-stations-points', name: 'Subway Stations', type: 'icon', icon: 'subway' },
         ];
     
         layers.forEach(layer => {
@@ -304,9 +335,9 @@ map.on('load', () => {
             key.className = 'legend-color';
     
             if (layer.type === 'color') {
-                key.style.backgroundColor = layer.color; // 显示颜色标识
+                key.style.backgroundColor = layer.color;  // 显示颜色标识
             } else if (layer.type === 'icon') {
-                key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
+                key.innerHTML = `< img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
             }
     
             // 添加 layer 名称
@@ -319,9 +350,3 @@ map.on('load', () => {
             legend.appendChild(item);
         });
     });
-
-    
-=======
-
-  
->>>>>>> Stashed changes

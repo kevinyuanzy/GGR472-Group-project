@@ -20,6 +20,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Turf.js -->
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 </head>
     
     
@@ -38,7 +41,7 @@
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://torontolife.com/category/culture/" target="_blank">Toronto Life</a >
+                        <a class="nav-link" href="./about.html">About</a >
                     </li>
                 </ul>
             </div>
@@ -54,7 +57,7 @@
 
      <!-- NAVIGATION ELEMENTS -->
      <div class='map-search-container'>
-         <label>Search for GTA location</label>
+         <!-- <label>Search for GTA location</label> -->
          <div id="geocoder" class="geocoder"></div>
          <button type="button" class="btn btn-custom btn-sm" id="returnbutton">Return to full extent</button>
      </div>
@@ -69,30 +72,33 @@
      <!-- interactivity -->
      <div class='map-data-container'>
         <label>Filter Map View</label>
+      
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="signaturecheck" checked>
-            <label class="form-check-label">Show Signature Sites</label>
+          <input class="form-check-input" type="checkbox" value="" id="housingcheck" checked>
+          <label class="form-check-label">Affordable Housing Sites</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="policecheck" checked>
-            <label class="form-check-label">Show Police Stations</label>
+          <input class="form-check-input" type="checkbox" value="" id="signaturecheck">
+          <label class="form-check-label">Signature Sites</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="healthcheck" checked>
-            <label class="form-check-label">Show Health Service Sites</label>
+          <input class="form-check-input" type="checkbox" value="" id="policecheck">
+          <label class="form-check-label">Police Stations</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="housingcheck" checked>
-            <label class="form-check-label">Show Affordable Housing Sites</label>
+          <input class="form-check-input" type="checkbox" value="" id="healthcheck">
+          <label class="form-check-label">Health Service Sites</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="subwaycheck" checked>
-            <label class="form-check-label">Show Subway Lines and Stations</label>
-        </div>    
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="legendcheck" checked>
-            <label class="form-check-label">Show Legend</label>
-        </div>
+            <input class="form-check-input" type="checkbox" value="" id="subwayLineCheck">
+            <label class="form-check-label">Subway Lines</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="subwayStationCheck">
+            <label class="form-check-label">Subway Stations</label>
+          </div>
+        
+      </div>
 
 
      <!-- Bootstrap JS -->
@@ -107,7 +113,3 @@
 
 </body>
 </html>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
