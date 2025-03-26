@@ -34,7 +34,7 @@ let Homicidegeojson;
 
 // Use fetch function to access geojson file of Homicide cases from the online repository
 // Convert the response to JSON format and then store the response in the variable
-fetch("https://raw.githubusercontent.com/kevinyuanzy/472-Lab4-KY/refs/heads/main/data/pedcyc_collision_06-21.geojson")
+fetch("https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Homicides_Open_Data_ASR_RC_TBL_002_-5278672909720192143.geojson")
     .then(response => response.json())
     .then(response => {
         console.log(response); //Check response in console
@@ -63,19 +63,19 @@ map.on('load', () => {
     console.log(bboxcoords)
 
     // Create the hexgrid
-    let hexdata = turf.hexGrid(bboxcoords, 0.5, {units: "kilometers"});
+    let hexdata = turf.hexGrid(bboxcoords, 0.6, {units: "kilometers"});
     console.log(hexdata)
 
     // use turf.collect() to collect cases in each hexagon
-    let collishex = turf.collect(hexdata, Homicidegeojson, "id_", "values")
+    let homicidehex = turf.collect(hexdata, Homicidegeojson, "_id", "values")
 
-    console.log(collishex)
+    console.log(homicidehex)
 
     // Create new variable to store max number of Homicide
     let maxHomicides = 0;
 
     // Count the cases in each hexagon
-    collishex.features.forEach((feature) => {
+    homicidehex.features.forEach((feature) => {
         feature.properties.COUNT = feature.properties.values.length;
         if (feature.properties.COUNT > maxHomicides) {
             maxHomicides = feature.properties.COUNT;
@@ -84,7 +84,7 @@ map.on('load', () => {
 
     map.addSource('HomicideGrid', {
         type: 'geojson',
-        data: collishex // The URL to my GeoJson polygon.
+        data: homicidehex // The URL to my GeoJson polygon.
     });
     
     // Add layer style to the map to represent park polygons.
