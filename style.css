@@ -68,69 +68,6 @@ html, body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* 图例盒子 */
-.legend-box {
-  position: absolute;
-  font: 15px/25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-  bottom:10px;
-  right: 10px;
-  z-index: 11;
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Position the Subway Legend on the left */
-#subwaylegend {
-  right: auto;
-  left: 20px;
-  bottom:20px;
-}
-
-/* Position the Hexgrid Legend on the left */
-#hexgridlegend {
-  right: 20px;
-  left: auto;
-  bottom:20px;
-}
-
-/* 图例内部样式 */
-.legend-color {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  position: relative;
-  top: -1px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.legend-icon {
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  top: -1px;
-}
-
-.legend-icon img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-}
-
-
 /* 右上角的 filter 面板 */
 .map-data-container {
   position: absolute;
@@ -182,13 +119,7 @@ html, body {
   margin-top: 5px;
 }
 
-.form-check-label {
-  font: 14px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-}
-
 .option-label {
-  font: 15px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-  font-weight: bold;
   width: 95%;
   padding-bottom: 8px;
 }
@@ -258,7 +189,7 @@ input[type="checkbox"]:focus {
 /* 🔹 让 Legend 贴紧 Filter Map View 下方，并自动扩展高度 */
 .legend-box {
   position: absolute;
-  top: 335px;
+  top: 347px;
   right: 10px;
   width: 280px;
   height: 200px; /* 让它至少 200px，但可以变高 */
@@ -266,6 +197,7 @@ input[type="checkbox"]:focus {
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  padding: 10px;
 }
 
 /* 🔹 让 Homicide Hexgrid 直接在 Legend 下面 */
@@ -274,11 +206,12 @@ input[type="checkbox"]:focus {
   top: 555px;
   right: 10px;
   width: 280px;
-  height: 200px; /* 让它至少 200px，但可以变高 */
+  height: 250px; /* 让它至少 200px，但可以变高 */
   background: white;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  padding: 10px;
 }
 
 /* 🔹 让 Legend 和 Filter Box 统一边框样式 */
@@ -290,10 +223,10 @@ input[type="checkbox"]:focus {
 /* 🔹 让 Subway Legend 固定在地图左下角 */
 .subwaylegend {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 40px;
+  left: 20px;
   background: white;
-  padding: 20px;
+  padding: 10px;
   border: 3px solid #a65c7a;
   border-radius: 10px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
@@ -301,5 +234,43 @@ input[type="checkbox"]:focus {
   min-width: 100px; /* 防止太窄 */
 }
 
+/* Add an outline for subway station circles */
+.subway-station-outline {
+  border: 2px solid black; /* Outline color */
+}
 
+/* 图例内部样式 */
+.legend-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  top: -1px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.legend-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  top: -1px;
+}
+
+.legend-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
 

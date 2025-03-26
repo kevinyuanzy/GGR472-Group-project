@@ -118,21 +118,6 @@ map.on('load', () => {
             .addTo(map);
     });
 
-    map.addSource('homicide_locations', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Homicides_Open_Data_ASR_RC_TBL_002_-5278672909720192143.geojson' // The URL to GeoJson completed portion of subway line.
-    });
-
-    map.addLayer({
-        'id': 'toronto-homicide-locations-points', 
-        'type': 'circle', 
-        'source': 'homicide_locations',
-        'paint': {
-            'circle-color': '#000000',
-            'circle-size': 1 
-        },
-    });
-
     map.addSource('signature_sites', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Toronto%20Signature%20Sites%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
@@ -321,22 +306,10 @@ map.on('load', () => {
             'visibility',
         e.target.checked ? 'visible' : 'none'
         );
-        map.setLayoutProperty(
-            'toronto-homicide-locations-points',
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-        );
     });
     
 
-    map.on('mouseenter', 'line2-completed-stations', () => {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-
-    
-    map.on('mouseleave', 'line2-completed-stations', () => {
-        map.getCanvas().style.cursor = '';
-    });
+   
 
 });
 
@@ -474,7 +447,7 @@ map.on('load', () => {
         { id: 'subway-line-1', name: 'Line 1', type: 'color', color: '#F8C300' },
         { id: 'subway-line-2', name: 'Line 2', type: 'color', color: '#00923F' },
         { id: 'subway-line-4', name: 'Line 4', type: 'color', color: '#A21A68' },
-        { id: 'toronto-subway-stations-points', name: 'Subway Station', type: 'color', color: '#f3f0f5' },
+        { id: 'toronto-subway-stations-points', name: 'Subway Station', type: 'color', color: '#f5f5f5', outline: true},
         ];
 
         // Hexgrid legend layers
@@ -499,6 +472,14 @@ map.on('load', () => {
             key.style.backgroundColor = layer.color;  
         } else if (layer.type === 'icon') {
             key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  
+        }
+        
+        if (layer.type === 'color') {
+            key.style.backgroundColor = layer.color;
+
+            if (layer.outline) {
+                key.classList.add('subway-station-outline'); // Apply outline class
+            }
         }
 
         const label = document.createElement('span');
