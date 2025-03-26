@@ -81,6 +81,20 @@ html, body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Position the Subway Legend on the left */
+#subwaylegend {
+  right: auto;
+  left: 20px;
+  bottom:20px;
+}
+
+/* Position the Hexgrid Legend on the left */
+#hexgridlegend {
+  right: 20px;
+  left: auto;
+  bottom:20px;
+}
+
 /* 图例内部样式 */
 .legend-color {
   width: 18px;

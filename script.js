@@ -102,8 +102,7 @@ map.on('load', () => {
                 11, '#A8DDB5',
                 16, '#7BCCC4',
                 21, '#43A2CA',
-                31, '#0868AC',
-                maxHomicides, '#000000'
+                maxHomicides, '#0868AC'
             ],
             'fill-opacity': 0.8,
             'fill-outline-color': 'black',
@@ -262,7 +261,6 @@ map.on('load', () => {
     map.setLayoutProperty('HomicideFill', 'visibility', 'none');
     map.setLayoutProperty('toronto-homicide-locations-points', 'visibility', 'none');
     
-    
     //Change map layer display based on check box using setLayoutProperty method
     document.getElementById('signaturecheck').addEventListener('change', (e) => {
         map.setLayoutProperty(
@@ -308,7 +306,7 @@ map.on('load', () => {
             e.target.checked ? 'visible' : 'none'
         );
     });
-
+    
     document.getElementById('subwayStationCheck').addEventListener('change', (e) => {
         map.setLayoutProperty(
             'toronto-subway-stations-points',
@@ -462,6 +460,8 @@ map.on('load', () => {
 
     map.on('load', () => {
         const legend = document.getElementById('legend');
+        const subwayLegend = document.getElementById('subwaylegend');
+        const hexgridLegend = document.getElementById('hexgridlegend');
     
         const layers = [
             { id: 'toronto-signature-sites-points', name: 'Signature Sites', type: 'icon', icon: 'attraction' },
@@ -469,27 +469,49 @@ map.on('load', () => {
             { id: 'toronto-affordable-housing-points', name: 'Affordable Housing', type: 'color', color: '#c26bed' },
             { id: 'toronto-health-services-points', name: 'Health Services', type: 'icon', icon: 'Hospital' },
         ];
-    
+
+        // Subway legend layers
+        const subwayLayers = [
+        { id: 'subway-line-1', name: 'Line 1', type: 'color', color: '#F8C300' },
+        { id: 'subway-line-2', name: 'Line 2', type: 'color', color: '#00923F' },
+        { id: 'subway-line-4', name: 'Line 4', type: 'color', color: '#A21A68' },
+        ];
+
+        // Hexgrid legend layers
+        const hexgridLayers = [
+        { id: '1-5cases', name: '1-5', type: 'color', color: '#F0F9E8' },
+        { id: '6-10cases', name: '6-10', type: 'color', color: '#CCEBC5' },
+        { id: '11-15cases', name: '11-15', type: 'color', color: '#A8DDB5' },
+        { id: '16-20cases', name: '16-20', type: 'color', color: '#7BCCC4' },
+        { id: '21-25cases', name: '21-25', type: 'color', color: '#43A2CA' },
+        { id: '25abovecases', name: 'Above 25', type: 'color', color: '#0868AC' },
+        ];
+     
+        function createLegend(container, layers) {
         layers.forEach(layer => {
-            const item = document.createElement('div');
-            item.className = 'legend-item';
-    
-            const key = document.createElement('span');
-            key.className = 'legend-color';
-    
-            if (layer.type === 'color') {
-                key.style.backgroundColor = layer.color;  // 显示颜色标识
-            } else if (layer.type === 'icon') {
-                key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
-            }
-    
-            // 添加 layer 名称
-            const label = document.createElement('span');
-            label.textContent = layer.name;
-    
-            // 组合 legend
-            item.appendChild(key);
-            item.appendChild(label);
-            legend.appendChild(item);
-        });
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+
+        const key = document.createElement('span');
+        key.className = 'legend-color';
+
+        if (layer.type === 'color') {
+            key.style.backgroundColor = layer.color;  
+        } else if (layer.type === 'icon') {
+            key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  
+        }
+
+        const label = document.createElement('span');
+        label.textContent = layer.name;
+
+        item.appendChild(key);
+        item.appendChild(label);
+        container.appendChild(item);
+    });
+    }
+
+    // Populate both legends
+    createLegend(legend, layers);
+    createLegend(subwayLegend, subwayLayers);
+    createLegend(hexgridLegend, hexgridLayers);
     });
