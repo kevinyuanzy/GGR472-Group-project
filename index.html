@@ -20,6 +20,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Turf.js -->
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 </head>
     
     
@@ -69,30 +72,33 @@
      <!-- interactivity -->
      <div class='map-data-container'>
         <label>Filter Map View</label>
+      
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="signaturecheck" checked>
-            <label class="form-check-label">Signature Sites</label>
+          <input class="form-check-input" type="checkbox" value="" id="housingcheck" checked>
+          <label class="form-check-label">Affordable Housing Sites</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="policecheck" checked>
-            <label class="form-check-label">Police Stations</label>
+          <input class="form-check-input" type="checkbox" value="" id="signaturecheck">
+          <label class="form-check-label">Signature Sites</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="healthcheck" checked>
-            <label class="form-check-label">Health Service Sites</label>
+          <input class="form-check-input" type="checkbox" value="" id="policecheck">
+          <label class="form-check-label">Police Stations</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="housingcheck" checked>
-            <label class="form-check-label">Affordable Housing Sites</label>
+          <input class="form-check-input" type="checkbox" value="" id="healthcheck">
+          <label class="form-check-label">Health Service Sites</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="subwaycheck" checked>
-            <label class="form-check-label">Subway Lines and Stations</label>
-        </div>    
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="legendcheck" checked>
-            <label class="form-check-label">Legend</label>
-        </div>
+            <input class="form-check-input" type="checkbox" value="" id="subwayLineCheck">
+            <label class="form-check-label">Subway Lines</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="subwayStationCheck">
+            <label class="form-check-label">Subway Stations</label>
+          </div>
+        
+      </div>
 
 
      <!-- Bootstrap JS -->
@@ -106,5 +112,4 @@
 
 
 </body>
-
 </html>

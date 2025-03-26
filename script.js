@@ -134,6 +134,32 @@ map.on('load', () => {
         },
     });
 
+    map.addSource('housing-buffer', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: []
+        }
+      });
+      
+      // 添加 buffer 图层
+      map.addLayer({
+        id: 'housing-buffer-layer',
+        type: 'fill',
+        source: 'housing-buffer',
+        paint: {
+          'fill-color': '#6a00ff',
+          'fill-opacity': 0.3
+        }
+      });
+
+    map.setLayoutProperty('toronto-affordable-housing-points', 'visibility', 'visible');
+    map.setLayoutProperty('toronto-signature-sites-points', 'visibility', 'none');
+    map.setLayoutProperty('toronto-police-facilities-points', 'visibility', 'none');
+    map.setLayoutProperty('toronto-health-services-points', 'visibility', 'none');
+    map.setLayoutProperty('toronto-subway-line', 'visibility', 'none');
+    map.setLayoutProperty('toronto-subway-stations-points', 'visibility', 'none');
+
     
     //Change map layer display based on check box using setLayoutProperty method
     document.getElementById('signaturecheck').addEventListener('change', (e) => {
@@ -168,18 +194,6 @@ map.on('load', () => {
         );
     });
 
-    document.getElementById('subwaycheck').addEventListener('change', (e) => {
-        map.setLayoutProperty(
-            'toronto-subway-stations-points',
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-        );
-        map.setLayoutProperty(
-            'toronto-subway-line',
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-        );
-    });
 });
 
     // Pop-up windows that appear on a mouse click or hover
@@ -219,11 +233,23 @@ map.on('load', () => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(
-                `<b>Address:</b> ${e.features[0].properties.ADDRESS}<br>
-                 <b>Area-Name:</b> ${e.features[0].properties.AREA_NAME}`
+                `<b>Address:</b> ${e.features[0].properties.Address}<br>
+                 <b>Ward Number:</b> ${e.features[0].properties.Ward_Number}<br>
+                 <b>Construction Start Date:</b> ${e.features[0].properties.Construction_Start_Date}`
             )
             .addTo(map);
+        
+        // 创建 buffer（单位：kilometers）
+        const coords = e.lngLat; // ✅ 先从 e 事件中取出点击位置
+        const point = turf.point([coords.lng, coords.lat]);
+        const buffered = turf.buffer(point, 1, { units: 'kilometers' });
+
+        // 更新 buffer 图层的数据源
+        map.getSource('housing-buffer').setData(buffered);
     });
+
+
+
 
     // pop up, cycling network, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-health-services-points', () => {
@@ -261,7 +287,9 @@ map.on('load', () => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(
-                `<b>Name:</b> ${e.features[0].properties.AREA_NAME}<br>`
+                `<b>District:</b> ${e.features[0].properties.district}<br>
+                 <b>Site Name:</b> ${e.features[0].properties.site_name}<br>
+                 <b>Comments:</b> ${e.features[0].properties.comments}<br>`
             )
             .addTo(map);
     });
