@@ -337,7 +337,7 @@ map.on('load', () => {
             if (layer.type === 'color') {
                 key.style.backgroundColor = layer.color;  // 显示颜色标识
             } else if (layer.type === 'icon') {
-                key.innerHTML = `< img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
+                key.innerHTML = `<img src="assets_icons/${layer.icon}.png" class="legend-icon">`;  // ✅ 使用本地图片
             }
     
             // 添加 layer 名称
