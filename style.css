@@ -134,6 +134,7 @@ html, body {
 /* 右上角的 filter 面板 */
 .map-data-container {
   position: absolute;
+  font: 15px/25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
   top: 280px;
   right: 10px;
   z-index: 11;
@@ -142,6 +143,7 @@ html, body {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
 
 /* 控制按钮风格 */
 .mapboxgl-ctrl-group {
@@ -270,15 +272,19 @@ input[type="checkbox"]:focus {
 
 /* 🔹 让 Homicide Hexgrid 直接在 Legend 下面 */
 .hexgridlegend {
+  font: 15px/20px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
   position: absolute;
-  top: 555px;
-  right: 10px;
+  font-size: small;
+  bottom: 10px;
+  top: 540px;
+  right: 10px !important;  
   width: 280px;
-  height: 200px; /* 让它至少 200px，但可以变高 */
   background: white;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+
+  margin-left: 25px; /* ✅ 让它往右移动 */
 }
 
 /* 🔹 让 Legend 和 Filter Box 统一边框样式 */
