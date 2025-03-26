@@ -130,6 +130,7 @@ html, body {
   object-fit: contain;
 }
 
+
 /* 右上角的 filter 面板 */
 .map-data-container {
   position: absolute;
@@ -240,4 +241,35 @@ input[type="checkbox"]:focus {
   outline: none;
   box-shadow: none;
 }
-    
+
+/* 让 Filter Map View 贴紧右侧 */
+.map-data-container {
+  margin-bottom: 5px;
+  position: absolute;
+  top: 65px; /* 根据 navbar 调整 */
+  right: 10px; /* 靠右 */
+  width: 280px; /* 控制宽度 */
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 让 Legend 贴紧 Filter Map View 下方 */
+.legend-box {
+  position: absolute;
+  height: 200px; /* 控制高度 */
+  top: 335px; /* 调整这个值，确保它在 Filter Map View 下面 */
+  right: 10px; /* 靠右 */
+  width: 280px; /* 控制宽度，和 Filter Map View 一致 */
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-data-container, .legend-box {
+  border: 3px solid #aa5e79; /* 设置粉色边框 */
+  border-radius: 10px; /* 让边角更圆滑 */
+}
+
