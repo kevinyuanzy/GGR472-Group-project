@@ -19,44 +19,44 @@ html, body {
 }
 
 .navbar-collapse {
-  justify-content: flex-start !important; /* 让菜单对齐左侧 */
+  justify-content: flex-start !important; /* Align the menu to the left */
 }
 
 .navbar-nav {
   font-weight: bold;
   font-size: 15px;
-  margin-left: 0 !important; /* 确保列表无额外间距 */
+  margin-left: 0 !important; /* Make sure the list has no extra spacing */
   padding-left: 0 !important;
 }
 
 .navbar-brand {
-  font-weight: bold; /* 加粗 */
-  font-size: 20px; /* 字体稍微变大 */
-  padding-left: 330px; /* 向右移动一点 */
+  font-weight: bold; /* bold */
+  font-size: 20px; /* Make the font slightly larger */
+  padding-left: 330px; /* Move a little to the right */
 }
 
 
-/* 页面主布局 */
+/* Main page layout */
 .layout {
   display: flex;
   width: 100%;
-  height: calc(100vh - 56px); /* 移除 navbar 高度 */
+  height: calc(100vh - 56px); /* Remove the navbar height */
   box-sizing: border-box;
   padding: 10px 10px 10px 10px;
   gap: 10px;
 }
 
-/* 地图加宽（从85% → 94%）*/
+/* Map broadening（从85% → 94%）*/
 .map {
   width: 80%;
   height: 100%;
   border: 3px solid #aa5e79;
   box-sizing: border-box;
-  border-radius: 12px; /* 🌟 四角圆润 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* 🌟 添加阴影 */
+  border-radius: 12px; /* 🌟 The corners are rounded */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* 🌟 Drop Shadow */
 }
 
-/* 搜索框 */
+/* search box */
 .map-search-container {
   position: absolute;
   top: 70px;
@@ -68,7 +68,7 @@ html, body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* 右上角的 filter 面板 */
+/* The filter panel in the upper right corner */
 .map-data-container {
   position: absolute;
   top: 280px;
@@ -81,7 +81,7 @@ html, body {
 }
 
 
-/* 控制按钮风格 */
+/* Control button style */
 .mapboxgl-ctrl-group {
   background-color: #ffd1e2c7;
   border-radius: 6px;
@@ -97,7 +97,7 @@ html, body {
   background-color: #f5d7e2;
 }
 
-/* 搜索按钮 */
+/* search button */
 .btn-custom {
   background-color: #ffffff;
   color: rgb(27, 24, 24);
@@ -141,7 +141,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"] {
-  /* 完全自定义，隐藏系统默认 */
+  /* Fully custom, hidden system default */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -157,29 +157,29 @@ input[type="checkbox"] {
   transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* 粉色背景 + 白色勾勾 */
+/* Pink background White checkmark */
 input[type="checkbox"]:checked {
   background-color: #ff82ac;
   border-color: #ff82ac;
 }
 
-/* 鼠标悬停加深边框 */
+/* Deepen the border with your mouse hover */
 input[type="checkbox"]:hover {
   border-color: #ff5c9e;
 }
 
-/* 焦点无系统高亮 */
+/* The focus is not systematically highlighted */
 input[type="checkbox"]:focus {
   outline: none;
   box-shadow: none;
 }
 
-/* 🔹 让 Filter Map View 贴紧右侧 */
+/* Make the Filter Map View fit to the right */
 .map-data-container {
   position: absolute;
-  top: 65px; /* 根据 navbar 调整 */
-  right: 10px; /* 靠右 */
-  width: 280px; /* 控制宽度 */
+  top: 65px; /* Adjust according to navbar */
+  right: 10px; /* keep right  */
+  width: 280px; /* Set the width */
   background: white;
   padding: 15px;
   border-radius: 10px;
@@ -187,13 +187,13 @@ input[type="checkbox"]:focus {
   margin-bottom: 10px;
 }
 
-/* 🔹 让 Legend 贴紧 Filter Map View 下方，并自动扩展高度 */
+/* Make the Legend fit to the right */
 .legend-box {
   position: absolute;
   top: 347px;
   right: 10px;
   width: 280px;
-  height: 200px; /* 让它至少 200px，但可以变高 */
+  height: 200px; /* Make it at least 200px tall, but it can be taller */
   background: white;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -201,7 +201,7 @@ input[type="checkbox"]:focus {
   padding: 10px;
 }
 
-/* 🔹 让 Homicide Hexgrid 直接在 Legend 下面 */
+/* Make the Hexgrid Legend fit to the right */
 .hexgridlegend {
   position: absolute;
   font-size: small;
@@ -209,7 +209,7 @@ input[type="checkbox"]:focus {
   top: 560px;
   right: 10px !important;  
   width: 280px;
-  height: 210px; /* 让它至少 200px，但可以变高 */
+  height: 210px; /* Make it at least 200px tall, but it can be taller */
   background: white;
   padding: 10px;
   border-radius: 10px;
@@ -217,13 +217,13 @@ input[type="checkbox"]:focus {
   overflow: hidden;
 }
 
-/* 🔹 让 Legend 和 Filter Box 统一边框样式 */
+/* Add a pink border to the Filter Map View and Legend */
 .map-data-container, .legend-box, .hexgridlegend {
-  border: 3px solid #aa5e79; /* 粉色边框 */
+  border: 3px solid #aa5e79; /* Pink border */
   border-radius: 10px;
 }
 
-/* 🔹 让 Subway Legend 固定在地图左下角 */
+/* Add a pink border to the Filter Map View and Legend */
 .subwaylegend {
   position: absolute;
   bottom: 40px;
@@ -233,8 +233,8 @@ input[type="checkbox"]:focus {
   border: 3px solid #a65c7a;
   border-radius: 10px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-  width: 190px; /* 让它根据内容自动调整宽度 */
-  min-width: 100px; /* 防止太窄 */
+  width: 190px; /* Set the width */
+  min-width: 100px; /* Set the minimum width */
 }
 
 /* Add an outline for subway station circles */
@@ -242,7 +242,7 @@ input[type="checkbox"]:focus {
   border: 2px solid black; /* Outline color */
 }
 
-/* 图例内部样式 */
+/* Add a pink border to the Filter Map View and Legend */
 .legend-color {
   width: 18px;
   height: 18px;
