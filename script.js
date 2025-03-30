@@ -225,7 +225,7 @@ map.on('load', () => {
         }
       });
       
-      // 添加 buffer 图层
+      // Add buffer layer to the map
       map.addLayer({
         id: 'housing-buffer-layer',
         type: 'fill',
@@ -306,10 +306,7 @@ map.on('load', () => {
             'visibility',
         e.target.checked ? 'visible' : 'none'
         );
-    });
-    
-
-   
+    }); 
 
 });
 
@@ -356,12 +353,12 @@ map.on('load', () => {
             )
             .addTo(map);
         
-        // 创建 buffer（单位：kilometers）
-        const coords = e.lngLat; // ✅ 先从 e 事件中取出点击位置
+        // create a buffer around the clicked point
+        const coords = e.lngLat; // ✅ Get the coordinates of the clicked point
         const point = turf.point([coords.lng, coords.lat]);
         const buffered = turf.buffer(point, 1, { units: 'kilometers' });
 
-        // 更新 buffer 图层的数据源
+        // update the data source to display the buffer
         map.getSource('housing-buffer').setData(buffered);
     });
 
