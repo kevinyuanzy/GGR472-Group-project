@@ -42,13 +42,13 @@ fetch("https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/h
     });
 
 map.on('load', () => {
-    // Create a bounding box around the Homicide point data
+    // Create a bounding box around the Homicide point data, using Turf.js
 
     let envresult = turf.envelope(Homicidegeojson);
     console.log(envresult.bbox)
 
     // Enlarge the bounding box by 10 percent
-    let bboxscaled = turf.transformScale(envresult, 1.1);
+    let bboxscaled = turf.transformScale(envresult, 1.1); // Expand bounding box by 10%
     console.log(bboxscaled)
 
     // Access and store the bounding box coordinates
@@ -87,7 +87,7 @@ map.on('load', () => {
         data: homicidehex // The URL to my GeoJson polygon.
     });
     
-    // Add layer style to the map to represent park polygons.
+    // Add layer style to the map to represent polygons.
     map.addLayer({
         'id': 'HomicideFill',
         'type': 'fill',
@@ -118,6 +118,7 @@ map.on('load', () => {
             .addTo(map);
     });
 
+    // add source and add layer for signature sites
     map.addSource('signature_sites', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Toronto%20Signature%20Sites%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
@@ -133,6 +134,7 @@ map.on('load', () => {
         },
     });
 
+    // add source and add layer for Police facilities
     map.addSource('police_facilities', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Police_Facilities_-8924748313065318893.geojson' // The URL to GeoJson completed portion of subway line.
@@ -148,6 +150,7 @@ map.on('load', () => {
         },
     });
 
+    // add source and add layer for affordable housing
     map.addSource('affordable_housing', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/affordablehousing.geojson' // The URL to GeoJson completed portion of subway line.
@@ -162,6 +165,8 @@ map.on('load', () => {
             'circle-size': 1 
         },
     });
+
+    // add source and add layer for Subway lines and stations
 
     map.addSource('subway_line', {
         type: 'geojson',
@@ -202,6 +207,7 @@ map.on('load', () => {
         },
     });
 
+    // add source and add layer for health services
     map.addSource('health_services', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/GGR472-Group-project/refs/heads/main/data/Health%20Services%20-%204326.geojson' // The URL to GeoJson completed portion of subway line.
@@ -216,6 +222,8 @@ map.on('load', () => {
             'icon-size': 1  
         },
     });
+
+    //add buffer around the housing points
 
     map.addSource('housing-buffer', {
         type: 'geojson',
@@ -311,7 +319,7 @@ map.on('load', () => {
 });
 
     // Pop-up windows that appear on a mouse click or hover
-    // pop up, Bicycle Parking. When mouse click, can see the bicycle parking info. Changing cursor on mouse over.
+    // pop up. When mouse click, can see the info. Changing cursor on mouse over.
     map.on('mouseenter', 'toronto-subway-stations-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -321,7 +329,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is points data bicycle parking
+    // Event listener for showing popup on click, here is points data
     map.on('click', 'toronto-subway-stations-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat) //Use method to set coordinates of popup based on mouse click location
@@ -333,7 +341,7 @@ map.on('load', () => {
             .addTo(map); //Show popup on map
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, affordable house, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-affordable-housing-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -342,7 +350,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click
     map.on('click', 'toronto-affordable-housing-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -354,7 +362,7 @@ map.on('load', () => {
             .addTo(map);
         
         // create a buffer around the clicked point
-        const coords = e.lngLat; // ✅ Get the coordinates of the clicked point
+        const coords = e.lngLat; // Get the coordinates of the clicked point
         const point = turf.point([coords.lng, coords.lat]);
         const buffered = turf.buffer(point, 1, { units: 'kilometers' });
 
@@ -362,7 +370,7 @@ map.on('load', () => {
         map.getSource('housing-buffer').setData(buffered);
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, health services, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-health-services-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -371,7 +379,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click
     map.on('click', 'toronto-health-services-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -384,7 +392,7 @@ map.on('load', () => {
             .addTo(map);
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, signature sites, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-signature-sites-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -393,7 +401,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click
     map.on('click', 'toronto-signature-sites-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -405,7 +413,7 @@ map.on('load', () => {
             .addTo(map);
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, police facilities, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-police-facilities-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -414,7 +422,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click, here is police data
     map.on('click', 'toronto-police-facilities-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -430,7 +438,8 @@ map.on('load', () => {
         const legend = document.getElementById('legend');
         const subwayLegend = document.getElementById('subwaylegend');
         const hexgridLegend = document.getElementById('hexgridlegend');
-    
+        
+        // Define the general map layers (e.g. sites, services) with their properties for the legend
         const layers = [
             { id: 'toronto-signature-sites-points', name: 'Signature Sites', type: 'icon', icon: 'attraction' },
             { id: 'toronto-police-facilities-points', name: 'Police Facilities', type: 'icon', icon: 'Police' },
@@ -439,7 +448,7 @@ map.on('load', () => {
     
         ];
 
-        // Subway legend layers
+        // Subway legend layers, Define subway layers for subway legend with custom colors and styling
         const subwayLayers = [
         { id: 'subway-line-1', name: 'Line 1', type: 'color', color: '#F8C300' },
         { id: 'subway-line-2', name: 'Line 2', type: 'color', color: '#00923F' },
@@ -447,7 +456,7 @@ map.on('load', () => {
         { id: 'toronto-subway-stations-points', name: 'Subway Station', type: 'color', color: '#f5f5f5', outline: true},
         ];
 
-        // Hexgrid legend layers
+        // Hexgrid legend layers, each with a different color
         const hexgridLayers = [
         { id: '1-5cases', name: '1-5', type: 'color', color: '#F0F9E8' },
         { id: '6-10cases', name: '6-10', type: 'color', color: '#CCEBC5' },
@@ -457,14 +466,18 @@ map.on('load', () => {
         { id: '25abovecases', name: 'Above 25', type: 'color', color: '#0868AC' },
         ];
      
+        // Function to dynamically generate legend items in the provided container
         function createLegend(container, layers) {
         layers.forEach(layer => {
+        // Create a div for each legend item
         const item = document.createElement('div');
         item.className = 'legend-item';
 
+        // a span to show color or icon
         const key = document.createElement('span');
         key.className = 'legend-color';
 
+        // If the legend uses a solid color
         if (layer.type === 'color') {
             key.style.backgroundColor = layer.color;  
         } else if (layer.type === 'icon') {
@@ -482,6 +495,7 @@ map.on('load', () => {
         const label = document.createElement('span');
         label.textContent = layer.name;
 
+        // Append key and label to the item, then add the item to the container
         item.appendChild(key);
         item.appendChild(label);
         container.appendChild(item);
@@ -489,7 +503,7 @@ map.on('load', () => {
     }
 
     // Populate both legends
-    createLegend(legend, layers);
-    createLegend(subwayLegend, subwayLayers);
-    createLegend(hexgridLegend, hexgridLayers);
+    createLegend(legend, layers); // Right-side general legend
+    createLegend(subwayLegend, subwayLayers); // Left-side subway legend
+    createLegend(hexgridLegend, hexgridLayers); // Right-side hexgrid legend
     });
