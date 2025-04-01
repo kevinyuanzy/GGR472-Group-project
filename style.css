@@ -115,7 +115,7 @@ html, body {
   margin-top: 12px;
 }
 
-/* Checkbox 样式 */
+/* Checkbox styling */
 .form-check {
   margin-top: 5px;
 }
@@ -276,4 +276,3 @@ input[type="checkbox"]:focus {
   display: block;
   object-fit: contain;
 }
-
