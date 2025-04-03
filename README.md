@@ -70,8 +70,7 @@ Users can interactively explore these datasets through map layers, search tools,
 ---
 
 ## 🔧 Built With  
-
-- **Leaflet.js** – Interactive mapping library  
+ 
 - **HTML/CSS/JavaScript** – Core frontend technologies  
 - **GeoJSON** – Spatial data format  
 - **GitHub Pages** – Web hosting platform  
