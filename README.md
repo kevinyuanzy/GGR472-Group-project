@@ -77,13 +77,6 @@ Users can interactively explore these datasets through map layers, search tools,
 
 ---
 
-## 🖼️ Preview  
-
-![T.O. Life Map Screenshot](./screenshots/map-preview.png)  
-*Example view showing active layers, pop-ups, and buffer zone.*
-
----
-
 ## 📬 Get Involved  
 
 Explore Toronto like never before with the **T.O. Life Map**!  
