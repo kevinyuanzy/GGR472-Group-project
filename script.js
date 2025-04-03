@@ -311,7 +311,7 @@ map.on('load', () => {
 });
 
     // Pop-up windows that appear on a mouse click or hover
-    // pop up, Bicycle Parking. When mouse click, can see the bicycle parking info. Changing cursor on mouse over.
+    
     map.on('mouseenter', 'toronto-subway-stations-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -321,7 +321,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is points data bicycle parking
+    // Event listener for showing popup on click
     map.on('click', 'toronto-subway-stations-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat) //Use method to set coordinates of popup based on mouse click location
@@ -333,7 +333,7 @@ map.on('load', () => {
             .addTo(map); //Show popup on map
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-affordable-housing-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -342,7 +342,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click
     map.on('click', 'toronto-affordable-housing-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -362,7 +362,7 @@ map.on('load', () => {
         map.getSource('housing-buffer').setData(buffered);
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-health-services-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -371,7 +371,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click
     map.on('click', 'toronto-health-services-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -384,7 +384,7 @@ map.on('load', () => {
             .addTo(map);
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-signature-sites-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -393,7 +393,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click
     map.on('click', 'toronto-signature-sites-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -405,7 +405,7 @@ map.on('load', () => {
             .addTo(map);
     });
 
-    // pop up, cycling network, mouse enter and mouse leave
+    // pop up, mouse enter and mouse leave
     map.on('mouseenter', 'toronto-police-facilities-points', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -414,7 +414,7 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
     
-    // Event listener for showing popup on click, here is line data cycling network
+    // Event listener for showing popup on click
     map.on('click', 'toronto-police-facilities-points', (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
