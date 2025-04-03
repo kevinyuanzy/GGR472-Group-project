@@ -75,9 +75,3 @@ Users can interactively explore these datasets through map layers, search tools,
 - **GeoJSON** – Spatial data format  
 - **GitHub Pages** – Web hosting platform  
 
----
-
-## 📬 Get Involved  
-
-Explore Toronto like never before with the **T.O. Life Map**!  
-Have feedback, ideas, or want to collaborate? We’d love to hear from you.  
